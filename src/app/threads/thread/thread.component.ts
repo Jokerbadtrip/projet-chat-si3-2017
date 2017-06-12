@@ -9,12 +9,12 @@ import { ChanelModel } from "../../../shared/models/ChannelModel";
   styleUrls : ["./thread.component.css"]
 })
 
-export class ThreadComponent implements OnInit{
+export class ThreadComponent implements OnInit {
 
- @Input thread: ChanelModel;
+ // @Input thread: ChanelModel;
 
  constructor() {
-   this.thread = new ChanelModel(0, "thread_name", "thread_description", "date_hour", "date_hour");
+  // this.thread = new ChanelModel(0, "thread_name", "thread_description", "date_hour", "date_hour");
  }
 
 

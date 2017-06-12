@@ -1,2 +1,2 @@
 export {ThreadComponent} from "./thread.component";
-export {ThreadModule} from "./thread.module";
+// export {ThreadModule} from "./thread.module";
