@@ -8,13 +8,18 @@ import { AppComponent } from "./app.component";
 import { MessageComponent, MessageListComponent } from "./messages";
 import { MessageFormComponent } from "./message-form";
 import { MessageService } from "../shared/services/message/message.service";
+// import {ThreadComponent, ThreadListComponent} from "./threads";
+import {ThreadFormComponent } from "./thread-form";
 
 @NgModule({
   declarations: [
     AppComponent,
     MessageFormComponent,
     MessageListComponent,
-    MessageComponent
+    MessageComponent,
+    // ThreadComponent,
+    // ThreadListComponent,
+    ThreadFormComponent
   ],
   imports: [
     BrowserModule,
