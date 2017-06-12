@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, RequestOptions, Response } from "@angular/http";
+import { Http, RequestOptions, Response, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 import "rxjs/add/operator/map";
@@ -62,11 +62,16 @@ export class MessageService {
    */
   public sendMessage(route: string, message: MessageModel) {
     console.log("sendMessage");
-    console.log("route = "+route);
-    console.log("message = "+message.content);
-    if(route&&message){
-      this.http.post(URLSERVER+route, message);
-      this.http.get(route).subscribe((response) => this.extractMessageAndGetMessages(response, URLSERVER+route));
+    console.log("route = " + route);
+    console.log("message = " + message.content);
+
+    const finalUrl = URLSERVER + route;
+    const header = new Headers({"Content-Type": "application/json"});
+    const options = new RequestOptions({headers: header});
+
+    if (route && message){
+      this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
+      this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
     }
     console.log("end-sendMessage");
   }
@@ -100,15 +105,15 @@ export class MessageService {
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
     console.log("extractMessageAndGetMessages");
-    console.log("response"+response.json());
+    console.log("response" + response.json());
     const id = response.json().id;
     const content = response.json().content;
     const fromWho = response.json().from;
     const created_at = response.json().createdAt;
     const updated_at = response.json().updatedAt;
     const threadId = response.json().threadId;
-    var messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, (threadId)?1:threadId);
-    console.log("end - extractMessageAndGetMessages"+messageModel.content);
+    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, (threadId) ? 1 : threadId);
+    console.log("end - extractMessageAndGetMessages" + messageModel.content);
     return messageModel;
   }
 }
