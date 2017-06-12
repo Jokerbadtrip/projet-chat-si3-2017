@@ -27,8 +27,15 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
+    this.reload();
+  }
+  
+  ngReapeat(){
+    this.reload();
+  }
+  reload() {
     this.messageService.getMessages(this.route);
     this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
+    console.log("reloading messages");
   }
-
 }
