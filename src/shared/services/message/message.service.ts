@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, RequestOptions, Response } from "@angular/http";
+import { Http, RequestOptions, Response, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 import "rxjs/add/operator/map";
@@ -64,8 +64,12 @@ export class MessageService {
     console.log("sendMessage");
     console.log("route = "+route);
     console.log("message = "+message.content);
+
+    let headers = new Headers({'Console-Type':'application/json'});
+    let options = new RequestOptions({headers: headers});
+
     if(route&&message){
-      this.http.post(URLSERVER+route, message);
+      this.http.post(URLSERVER+route, message, options);
       this.http.get(route).subscribe((response) => this.extractMessageAndGetMessages(response, URLSERVER+route));
     }
     console.log("end-sendMessage");
