@@ -14,7 +14,7 @@ export class ThreadComponent implements OnInit{
  @Input thread : ChanelModel;
 
  constructor(){
-   this.thread = new ChanelModel(0, "thread_name", "date_hour", "date_hour");
+   this.thread = new ChanelModel(0, "thread_name", "thread_description", "date_hour", "date_hour");
  }
 
 

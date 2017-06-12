@@ -14,6 +14,12 @@ export class ChanelModel {
    */
   public name: string;
 
+  /*
+  * Description du chanel
+   */
+
+  public description: string;
+
   /**
    * Date de creation du chanel.
    */
@@ -24,9 +30,10 @@ export class ChanelModel {
    */
   public updatedAt: string;
 
-  constructor(id: number, name?: string, createdAt?: string, updatedAt?: string) {
+  constructor(id: number, name?: string, description?: string, createdAt?: string, updatedAt?: string) {
     this.id = id;
     this.name = name;
+    this.description = description;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
