@@ -11,9 +11,9 @@ import { ChanelModel } from "../../../shared/models/ChannelModel";
 
 export class ThreadComponent implements OnInit{
 
- @Input thread : ChanelModel;
+ @Input thread: ChanelModel;
 
- constructor(){
+ constructor() {
    this.thread = new ChanelModel(0, "thread_name", "thread_description", "date_hour", "date_hour");
  }
 
