@@ -62,15 +62,16 @@ export class MessageService {
    */
   public sendMessage(route: string, message: MessageModel) {
     console.log("sendMessage");
-    console.log("route = "+route);
-    console.log("message = "+message.content);
+    console.log("route = " + route);
+    console.log("message = " + message.content);
 
-    let headers = new Headers({'Console-Type':'application/json'});
-    let options = new RequestOptions({headers: headers});
+    const finalUrl = URLSERVER + route;
+    const header = new Headers({"Content-Type": "application/json"});
+    const options = new RequestOptions({headers: header});
 
-    if(route&&message){
-      this.http.post(URLSERVER+route, message, options);
-      this.http.get(URLSERVER+route).subscribe((response) => this.extractMessageAndGetMessages(response, URLSERVER+route));
+    if (route && message){
+      this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
+      this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
     }
     console.log("end-sendMessage");
   }
@@ -104,15 +105,15 @@ export class MessageService {
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
     console.log("extractMessageAndGetMessages");
-    console.log("response"+response.json());
+    console.log("response" + response.json());
     const id = response.json().id;
     const content = response.json().content;
     const fromWho = response.json().from;
     const created_at = response.json().createdAt;
     const updated_at = response.json().updatedAt;
     const threadId = response.json().threadId;
-    var messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, (threadId)?1:threadId);
-    console.log("end - extractMessageAndGetMessages"+messageModel.content);
+    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, (threadId) ? 1 : threadId);
+    console.log("end - extractMessageAndGetMessages" + messageModel.content);
     return messageModel;
   }
 }
