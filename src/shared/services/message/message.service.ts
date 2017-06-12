@@ -61,7 +61,9 @@ export class MessageService {
    * @param message
    */
   public sendMessage(route: string, message: MessageModel) {
-    // Je suis vide :(
+    if(route&&message)
+      alert("route:"+route+"\nmess:"+message);
+    this.http.get(route).subscribe((response) => this.extractMessageAndGetMessages(response, route));
     // Tu peux trouver des infos sur moi dans le README !
   }
 
@@ -92,7 +94,15 @@ export class MessageService {
    * @returns {any|{}}
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
-    // Je suis vide aussi ...
+    alert("response"+response.json());
+    var id = response.json().id;
+    var content = response.json().content;
+    var fromWho = response.json().from;
+    var created_at = response.json().createdAt;
+    var updated_at = response.json().updatedAt;
+    var threadId = response.json().threadId; 
+    alert("\nid="+id+"\ncontent="+content+"\nfrom="+fromWho+"\ncreated="+created_at+"\nupdated="+updated_at+"\nthreadId="+threadId);
+    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, threadId);
     return new MessageModel(); // A remplacer ! On retourne ici un messageModel vide seulement pour que Typescript ne lève pas d'erreur !
   }
 }
