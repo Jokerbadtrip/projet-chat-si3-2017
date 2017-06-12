@@ -2,18 +2,20 @@ import { Component, OnInit } from "@angular/core";
 
 import { MessageService } from "../../../shared/services";
 import { MessageModel } from "../../../shared/models/MessageModel";
+import { MessageListComponent } from '../message-list/message-list.component';
 
 @Component({
   selector: "app-message-list",
-  templateUrl: "./message-list.component.html",
-  styleUrls: ["./message-list.component.css"]
+  templateUrl: "./message-pager.component.html",
+  styleUrls: ["./message-pager.component.css"]
 })
-export class MessageListComponent implements OnInit {
+export class MessagePagerComponent implements OnInit {
 
   public messageList: MessageModel[];
   private route: string;
 
   constructor(private messageService: MessageService) {
+    this.messageList = messageService.messageList$.json();
     this.route = "1/messages";//il devrait y avoir un id là
   }
 
