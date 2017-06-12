@@ -70,7 +70,7 @@ export class MessageService {
 
     if(route&&message){
       this.http.post(URLSERVER+route, message, options);
-      this.http.get(route).subscribe((response) => this.extractMessageAndGetMessages(response, URLSERVER+route));
+      this.http.get(URLSERVER+route).subscribe((response) => this.extractMessageAndGetMessages(response, URLSERVER+route));
     }
     console.log("end-sendMessage");
   }
