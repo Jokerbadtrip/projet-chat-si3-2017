@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, RequestOptions, Response } from "@angular/http";
+import { Http, RequestOptions, Response, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 import "rxjs/add/operator/map";
@@ -61,8 +61,18 @@ export class MessageService {
    * @param message
    */
   public sendMessage(route: string, message: MessageModel) {
-    // Je suis vide :(
-    // Tu peux trouver des infos sur moi dans le README !
+    console.log("sendMessage");
+    console.log("route = "+route);
+    console.log("message = "+message.content);
+
+    let headers = new Headers({'Console-Type':'application/json'});
+    let options = new RequestOptions({headers: headers});
+
+    if(route&&message){
+      this.http.post(URLSERVER+route, message, options);
+      this.http.get(URLSERVER+route).subscribe((response) => this.extractMessageAndGetMessages(response, URLSERVER+route));
+    }
+    console.log("end-sendMessage");
   }
 
   /**
@@ -74,6 +84,7 @@ export class MessageService {
    * @param response
    */
   extractAndUpdateMessageList(response: Response) {
+    console.log("extractAndUpdateMessageList");
     // Plus d'info sur Response ou sur la fonction .json()? si tu utilises Webstorm,
     // fait CTRL + Click pour voir la déclaration et la documentation
     const messageList = response.json() || []; // ExtractMessage: Si response.json() est undefined ou null,
@@ -92,7 +103,16 @@ export class MessageService {
    * @returns {any|{}}
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
-    // Je suis vide aussi ...
-    return new MessageModel(); // A remplacer ! On retourne ici un messageModel vide seulement pour que Typescript ne lève pas d'erreur !
+    console.log("extractMessageAndGetMessages");
+    console.log("response"+response.json());
+    const id = response.json().id;
+    const content = response.json().content;
+    const fromWho = response.json().from;
+    const created_at = response.json().createdAt;
+    const updated_at = response.json().updatedAt;
+    const threadId = response.json().threadId;
+    var messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, (threadId)?1:threadId);
+    console.log("end - extractMessageAndGetMessages"+messageModel.content);
+    return messageModel;
   }
 }
