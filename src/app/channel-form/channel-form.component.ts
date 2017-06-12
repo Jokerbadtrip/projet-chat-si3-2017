@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import {ChanelModel} from "../../shared/models/ChannelModel";
+import {ChannelService} from "../../shared/services/channel/channel.service";
 
 @Component({
   selector: "app-channel-form",
-  templateUrL : "./channel-form.component.html",
+  templateUrl : "./channel-form.component.html",
   styleUrls : ["./channel-form.component.css"]
 })
 
