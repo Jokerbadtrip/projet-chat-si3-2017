@@ -11,12 +11,13 @@ import { MessageListComponent } from '../message-list/message-list.component';
 })
 export class MessagePagerComponent implements OnInit {
 
-  public messageList: MessageModel[];
+  public messageList: MessageListComponent;
+  public pages: Page[];
   private route: string;
 
-  constructor(private messageService: MessageService) {
-    this.messageList = messageService.messageList$.json();
-    this.route = "1/messages";//il devrait y avoir un id là
+  constructor(messageList: MessageListComponent) {
+    this.messageList = messageList;
+    this.route = "page/1";//il devrait y avoir un id là
   }
 
   /**
@@ -29,8 +30,35 @@ export class MessagePagerComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    this.messageService.getMessages(this.route);
-    this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
+    this.messageList.getMessage();
+    
   }
 
+}
+class Page{
+  static nbMax = 10;
+  private currentIndice;
+  private messages: MessageModel[];
+  
+  /**
+   * function canAdd equals 0 if page is full
+   * a new one should be created
+   */
+  private canAdd(){
+    console.log("pager debug : canAdd");
+    return (Page.nbMax>this.currentIndice)?0:1;
+  }
+  
+  /**
+   * 
+   */
+  addItem(messageModel: MessageModel){
+    console.log("pager debug : addItem");
+    if(!this.currentIndice) this.currentIndice=0;
+    if(this.canAdd()>0){
+      this.messages[this.currentIndice] = messageModel;
+      return this.currentIndice++;
+    }
+     return -1;
+  }
 }
