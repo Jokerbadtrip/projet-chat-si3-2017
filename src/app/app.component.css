@@ -3,17 +3,9 @@ h1 {
 }
 .container{
 	background-color:#eeeeee;
-  min-height: 100%;
-  min-width: 100%;
-  position: fixed;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
 }
 .centered_block {
 	display : block;
-  top:50%;
-
 }
 
 hide{
@@ -24,7 +16,7 @@ hide:FOCUS{
 }
 
 .min_margin{
-	margin: 0.2em;
+	margin: 5%;
 }
 
 
@@ -32,30 +24,19 @@ hide:FOCUS{
 	background-color: #333333;
 }
 .sidebar{
-	width:30%;
-	display: block;
-  position: relative;
-  min-height: 100%;
 	background-color: #e3e3e3;
-	margin-right: 5em;
 }
 .main{
-  position: relative;
 	background-color: #ffffff;
-  min-height: 100%;
-	max-height:30em;
-	min-height:30em;
 }
 .scrollable{
 	overflow: scroll;
-	max-height: 20em;
-	min-height: 5em;
 }
 .left{
 	float:left;
 	align:left;
 	text-align: left;
-	padding-left: 5em;
+
 }
 bottom{
 	float:middle;
