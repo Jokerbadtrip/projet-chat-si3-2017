@@ -20,13 +20,13 @@ import { PagerItemModule } from './messages/message-pager/pager-item.module';
     MessageFormComponent,
     MessageListComponent,
     MessageComponent,
-    MessagePagerComponent
+    MessagePagerComponent,
+    PagerItemComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MessagePagerModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
