@@ -68,14 +68,11 @@ export class MessageService {
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
 
-
-    setInterval(() => {
-    if (route && message){
+    if (route && message) {
       this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
       this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
       console.log("sendMessage(" + route + " , " + message + ")");
     }
-      }, MessageService.UPDATE_VAL);
   }
 
   /**
@@ -90,14 +87,14 @@ export class MessageService {
 
     console.log("extractAndUpdateMessageList");
 
-    if(!response.ok) console.log("status = "+response.statusText);
-    else{
+    if (!response.ok) {console.log("status = " + response.statusText); }
+
     // Plus d'info sur Response ou sur la fonction .json()? si tu utilises Webstorm,
     // fait CTRL + Click pour voir la déclaration et la documentation
     const messageList = response.json() || []; // ExtractMessage: Si response.json() est undefined ou null,
     // messageList prendra la valeur tableau vide: [];
     this.messageList$.next(messageList); // On pousse les nouvelles données dans l'attribut messageList$
-    }
+
   }
 
   /**
@@ -113,8 +110,8 @@ export class MessageService {
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
     console.log("extractMessageAndGetMessages");
 
-    if(!response.ok) console.log("status = "+response.statusText);
-    else{
+    if (!response.ok){console.log("status = " + response.statusText); }
+
     const id = response.json().id;
     const content = response.json().content;
     const fromWho = response.json().from;
@@ -122,9 +119,8 @@ export class MessageService {
     const updated_at = response.json().updatedAt;
     const threadId = response.json().threadId;
     const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at);
-    console.log("extractMessageAndGetMessages "+threadId);
+    console.log("extractMessageAndGetMessages " + threadId);
     return messageModel;
-    }
-    return new MessageModel();
+
   }
 }
