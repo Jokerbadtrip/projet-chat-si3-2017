@@ -10,14 +10,12 @@ import {isNull} from "util";
 })
 export class AppComponent {
 
-
-
   public title: string;
   public channel: string;
 
 
   constructor() {
-    this.title = "Chat";
+    this.title = "Chat : ";
     this.channel = "Channel";
     Observable.create();
   }

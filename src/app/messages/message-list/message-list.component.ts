@@ -13,12 +13,10 @@ import {ChannelService} from "../../../shared/services/channel/channel.service";
 export class MessageListComponent implements OnInit {
 
   public messageList: MessageModel[];
-  private messageService: MessageService;
-  private route: string;
 
-  constructor(messageService: MessageService) {
-    this.messageService = messageService;
-     console.log("messageListControler");
+
+
+  constructor(private messageService: MessageService) {
   }
 
   /**
@@ -31,18 +29,10 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    console.log("message list init");
-    let id = "1";
-    if (document.getElementById("#threadId") != null) {
-      id = document.getElementById("#threadId").textContent;
-      console.log("threadId = " + id);
-    }
 
     const timer = Observable.timer(2000, 5000);
     timer.subscribe((t) => this.getMessage(t));
 
-    this.route = id + "/messages";
-    console.log("messagelist :" + this.route);
   }
 
   public getMessage(timer) {
