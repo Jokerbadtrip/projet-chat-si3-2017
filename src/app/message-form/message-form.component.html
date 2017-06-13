@@ -1,9 +1,9 @@
-<div class="row container well">
+<div class="row container well" ngController="MessageFormComponent">
 	<div class="col-md-7">
 		Le numéro du thread :<input type="text" class="form-control"
-			id="threadId" [(ngModel)]="message.threadId" name="threadId" min="0" max="99" required>
+			id="threadId" name="threadId" min="0" max="99" required>
 		Le contenu du message :<input type="text" class="form-control"
-			id="name" required [(ngModel)]="message.content" name="name">
+			id="name" required [(ngModel)]="message.content" name="name" required>
 	</div>
 	<div class="col-md-3" align="center">
 		<button class="btn btn-primary" (click)="sendMessage();">

@@ -16,6 +16,6 @@ import { MessageModule } from '../messages';
     MessageModule
   ],
   exports: [MessageFormComponent],
-  providers: [MessageService]
+  providers: []
 })
 export class MessageFormModule { }

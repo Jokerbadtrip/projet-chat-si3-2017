@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { MessageService } from "../../../shared/services";
 import { MessageModel } from "../../../shared/models/MessageModel";
+import { Page } from '../../../shared/models/pageModel';
 import { MessageListComponent } from "../message-list/message-list.component";
 import { PagerItemComponent } from './pager-item-component';
 
@@ -12,12 +13,11 @@ import { PagerItemComponent } from './pager-item-component';
 })
 export class MessagePagerComponent implements OnInit {
 
-  public messageList: MessageListComponent;
-  public pages: PagerItemComponent[];
+  public messageList: MessageModel[];
+  public pages: Page[];
   private route: string;
 
-  constructor(messageList: MessageListComponent) {
-    this.messageList = messageList;
+  constructor(private messageService : MessageService) {
     this.route = "page/1";//il devrait y avoir un id là
   }
 
@@ -31,8 +31,13 @@ export class MessagePagerComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    this.messageList.getMessage();
     
+  }
+  
+    public getMessageList(){
+     alert("getMessage");
+     this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
+     console.log("nombre de messages dans la liste :" + this.messageList.length);
   }
 
 }

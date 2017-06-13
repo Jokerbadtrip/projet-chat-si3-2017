@@ -14,7 +14,7 @@ import { NgModule } from "@angular/core";
     PagerItemModule
  ],
   exports: [MessagePagerComponent],
-  providers: [MessageService]
+  providers: []
 })
 export class MessagePagerModule {
  }

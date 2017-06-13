@@ -12,10 +12,12 @@ import { MessageFormComponent } from "../../message-form";
 export class MessageListComponent implements OnInit {
 
   public messageList: MessageModel[];
+  private messageService: MessageService;
   private route: string;
 
-  constructor(private messageService: MessageService) {
-
+  constructor(messageService: MessageService) {
+    this.messageService = messageService;
+     console.log("messageListControler");
   }
 
   /**
