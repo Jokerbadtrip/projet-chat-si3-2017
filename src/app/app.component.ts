@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
+import {Component, OnChanges, OnInit} from "@angular/core";
 import { Observable } from "rxjs/Observable";
+import {ChannelService} from "../shared/services/channel/channel.service";
+import {isNull} from "util";
 
 @Component({
   selector: "app-root",
@@ -8,8 +10,11 @@ import { Observable } from "rxjs/Observable";
 })
 export class AppComponent {
 
+
+
   public title: string;
   public channel: string;
+
 
   constructor() {
     this.title = "Chat";

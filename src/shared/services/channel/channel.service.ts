@@ -11,6 +11,8 @@ import {ChanelModel} from "../../models/ChannelModel";
 @Injectable()
 export class ChannelService {
 
+  static selectedChannel: ChanelModel;
+
   /**
    * Url pour accéder aux données. L'url est commun à toutes les fonctions du service.
    * Il permet d'accéder aux channels. À partir de cet url, vous pourrez accéder aux messages.

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, RequestOptions, Response, Headers } from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs/Rx";
 
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
@@ -67,6 +67,8 @@ export class MessageService {
     const finalUrl = URLSERVER + route;
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
+
+
     setInterval(() => {
     if (route && message){
       this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
@@ -85,9 +87,9 @@ export class MessageService {
    * @param response
    */
   extractAndUpdateMessageList(response: Response) {
-    
+
     console.log("extractAndUpdateMessageList");
-     
+
     if(!response.ok) console.log("status = "+response.statusText);
     else{
     // Plus d'info sur Response ou sur la fonction .json()? si tu utilises Webstorm,
@@ -110,7 +112,7 @@ export class MessageService {
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
     console.log("extractMessageAndGetMessages");
-    
+
     if(!response.ok) console.log("status = "+response.statusText);
     else{
     const id = response.json().id;
@@ -124,5 +126,5 @@ export class MessageService {
     return messageModel;
     }
     return new MessageModel();
-  }  
+  }
 }

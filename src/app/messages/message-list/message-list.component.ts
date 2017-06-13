@@ -36,6 +36,8 @@ export class MessageListComponent implements OnInit {
       id = document.getElementById("#threadId").textContent;
       console.log("threadId = " + id);
     }
+
+
     this.route = id +"/messages";
     console.log("messagelist :"+this.route);
     this.messageService.getMessages(this.route);

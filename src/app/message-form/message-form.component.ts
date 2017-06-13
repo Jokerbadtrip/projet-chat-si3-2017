@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { MessageService } from "../../shared/services";
 import { MessageModel } from "../../shared/models/MessageModel";
 import {ChanelModel} from "../../shared/models/ChannelModel";
+import {ChannelService} from "../../shared/services/channel/channel.service";
 
 @Component({
   selector: "app-message-form",
@@ -10,14 +11,13 @@ import {ChanelModel} from "../../shared/models/ChannelModel";
   styleUrls: ["./message-form.component.css"]
 })
 export class MessageFormComponent implements OnInit {
-  static currentChannel: ChanelModel;
   public message: MessageModel;
 
 
 
   constructor(private messageService: MessageService) {
-    if (!MessageFormComponent.currentChannel) {
-      MessageFormComponent.currentChannel = new ChanelModel(1);
+    if (!ChannelService.selectedChannel) {
+      ChannelService.selectedChannel = new ChanelModel(1);
     }
     this.message = new MessageModel(1, "Hello", "moi");
   }
@@ -31,8 +31,8 @@ export class MessageFormComponent implements OnInit {
    */
   sendMessage() {
     console.log("Click!");
-    console.log("currentChannel:" + MessageFormComponent.currentChannel);
-    const route = MessageFormComponent.currentChannel.id + "/messages";
+    console.log("currentChannel:" + ChannelService.selectedChannel);
+    const route = ChannelService.selectedChannel.id + "/messages";
     this.messageService.sendMessage(route, this.message);
     this.messageService.getMessages(route);
   }
