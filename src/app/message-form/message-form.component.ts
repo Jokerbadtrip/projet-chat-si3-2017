@@ -35,7 +35,10 @@ export class MessageFormComponent implements OnInit {
    */
   sendMessage() {
     console.log("Click!");
-    this.messageService.sendMessage(this.route, this.message);
+    console.log("route:" + this.route);
+    console.log("currentChannel:" + MessageFormComponent.currentChannel);
+    this.messageService.sendMessage(MessageFormComponent.currentChannel, this.message);
+    this.messageService.getMessages(MessageFormComponent.currentChannel);
   }
 
 
