@@ -40,3 +40,12 @@ hide:FOCUS{
 	max-height: 20em;
 	min-height: 5em;
 }
+.left{
+	float:left;
+	align:left;
+	text-align: left;
+	padding-left: 5em;
+}
+bottom{
+	float:middle;
+}
