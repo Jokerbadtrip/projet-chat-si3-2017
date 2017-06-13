@@ -1,12 +1,13 @@
 <div class="row container well" ngController="MessageFormComponent">
-	<div class="row">
+	<div class="col-md-12">
 			Le contenu du message :<br><input type="text" class="form-control"
 				id="name" required [(ngModel)]="message.content" name="name" required>
 	</div>
-	<div class="row centered_block">
+	<div class="col-md-12">
 			<button class="btn btn-primary" (click)="sendMessage();">
 				Send</button>
 	</div>
 </div>
-<p>Message model: {{message | json}}</p>
+<hr>
+<div class="row info">Message model: {{message | json}}</div>
 

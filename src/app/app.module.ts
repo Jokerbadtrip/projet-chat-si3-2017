@@ -1,3 +1,4 @@
+import { MessageService } from '../shared/services';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -14,7 +15,6 @@ import { MessagePagerModule } from './messages/message-pager';
 import {ChannelFormComponent} from "./channel-form/channel-form.component";
 import {ChannelService} from "../shared/services/channel/channel.service";
 import {ChannelListComponent} from "./channels/channel-list/channel-list.component";
-import {MessageModule} from "./messages/message/message.module";
 import {ChannelModule} from "./channels/channel/channel.module";
 import {ChannelListModule} from "./channels/channel-list/channel-list.module";
 import {ChannelFormModule} from "./channel-form/channel-form.module";
@@ -26,7 +26,7 @@ import {ChannelFormModule} from "./channel-form/channel-form.module";
     MessageFormComponent,
     MessageListComponent,
     ChannelListComponent,
-    ChannelFormComponent
+    ChannelFormComponent,
     MessageComponent,
     MessagePagerComponent,
     PagerItemComponent
