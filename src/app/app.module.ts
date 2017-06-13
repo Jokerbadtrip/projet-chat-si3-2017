@@ -13,6 +13,8 @@ import {ChannelService} from "../shared/services/channel/channel.service";
 import {ChannelListComponent} from "./channels/channel-list/channel-list.component";
 import {MessageModule} from "./messages/message/message.module";
 import {ChannelModule} from "./channels/channel/channel.module";
+import {ChannelListModule} from "./channels/channel-list/channel-list.module";
+import {ChannelFormModule} from "./channel-form/channel-form.module";
 
 
 @NgModule({
@@ -21,8 +23,8 @@ import {ChannelModule} from "./channels/channel/channel.module";
     MessageFormComponent,
     MessageListComponent,
     MessageComponent,
-    ChannelFormComponent,
-    ChannelListComponent
+    ChannelListComponent,
+    ChannelFormComponent
   ],
   imports: [
     BrowserModule,

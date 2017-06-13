@@ -49,7 +49,7 @@ export class ChannelService {
   private extractChannelAndGetChannel(response: Response): ChanelModel {
     console.log("extractChannelAndGetChannel:start");
     console.log("response:" + response.json());
-    console.log("channel response:" + response.json().name)
+    console.log("channel response:" + response.json().name + " id:" + response.json().id);
 
     const id = response.json().id;
     const name = response.json().name;
