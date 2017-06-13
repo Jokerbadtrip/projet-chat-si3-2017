@@ -28,7 +28,7 @@ export class ChannelListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-      this.channelService.getChannels(this.route);
+      this.channelService.getChannels();
       this.channelService.channelList$.subscribe((channels) => this.channelList = channels);
   }
 

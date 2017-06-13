@@ -25,30 +25,28 @@ export class ChannelService {
     this.channelList$.next([new ChanelModel(1)]);
   }
 
-  public createChannel(route: string, channel: ChanelModel) {
+  public createChannel(channel: ChanelModel) {
 
     console.log("createChannel:start");
-    console.log("route:" + route);
+    console.log("route:" + URLSERVER);
     console.log("channel:" + channel.id);
 
-    const finalUrl = URLSERVER + route;
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
 
-    if (route && channel) {
-      this.http.post(finalUrl, options).subscribe((response) => this.extractChannelAndGetChannel(response, route));
-      this.http.get(finalUrl).subscribe((response) => this.exctractAndUpdateChannelList(response));
+    if (channel) {
+      this.http.post(URLSERVER, options).subscribe((response) => this.extractChannelAndGetChannel(response));
+      this.http.get(URLSERVER).subscribe((response) => this.exctractAndUpdateChannelList(response));
     }
     console.log("createChannel:end");
   }
 
 
-  public getChannels(route: string) {
-    const finalUrl = URLSERVER + route;
-    this.http.get(finalUrl).subscribe((response) => this.exctractAndUpdateChannelList(response));
+  public getChannels() {
+    this.http.get(URLSERVER).subscribe((response) => this.exctractAndUpdateChannelList(response));
   }
 
-  private extractChannelAndGetChannel(response: Response, route: string): ChanelModel {
+  private extractChannelAndGetChannel(response: Response): ChanelModel {
     console.log("extractChannelAndGetChannel:start");
     console.log("response:" + response.json());
 

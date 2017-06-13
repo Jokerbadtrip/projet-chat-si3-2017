@@ -11,11 +11,9 @@ import {ChannelService} from "../../shared/services/channel/channel.service";
 export class ChannelFormComponent implements OnInit{
 
   public channel: ChanelModel;
-  private route: string;
 
   constructor(private channelService: ChannelService) {
     this.channel = new ChanelModel(1);
-    this.route = "1/channels";
   }
 
   ngOnInit(): void {
@@ -24,7 +22,7 @@ export class ChannelFormComponent implements OnInit{
 
   createChannel() {
     console.log("Click!");
-    this.channelService.createChannel(this.route, this.channel);
+    this.channelService.createChannel(this.channel);
   }
 
 
