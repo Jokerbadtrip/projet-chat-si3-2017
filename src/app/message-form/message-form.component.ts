@@ -10,12 +10,19 @@ import { MessageModel } from "../../shared/models/MessageModel";
 })
 export class MessageFormComponent implements OnInit {
 
+  static currentChannel: string;
+
   public message: MessageModel;
   private route: string;
 
+
+
   constructor(private messageService: MessageService) {
+    if (!MessageFormComponent.currentChannel) {
+      MessageFormComponent.currentChannel = "1/messages";
+    }
     this.message = new MessageModel(1, "Hello", "moi");
-    this.route = "1/messages";
+    this.route = MessageFormComponent.currentChannel;
   }
 
   ngOnInit() { }
@@ -30,4 +37,7 @@ export class MessageFormComponent implements OnInit {
     console.log("Click!");
     this.messageService.sendMessage(this.route, this.message);
   }
+
+
+
 }
