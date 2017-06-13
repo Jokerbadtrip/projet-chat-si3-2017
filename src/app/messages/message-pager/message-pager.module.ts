@@ -4,7 +4,7 @@ import { NgModule } from "@angular/core";
 import { MessageListComponent } from "../message-list/message-list.component";
 import { MessageModule } from "../message";
 import { MessageService } from "../../../shared/services";
-import { MessagePagerComponent } from './';
+import { MessagePagerComponent } from "./";
 
 @NgModule({
   declarations: [

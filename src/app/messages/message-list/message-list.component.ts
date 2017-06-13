@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { MessageService } from "../../../shared/services";
 import { MessageModel } from "../../../shared/models/MessageModel";
-import { MessageFormComponent } from '../../message-form';
+import { MessageFormComponent } from "../../message-form";
 
 @Component({
   selector: "app-message-list",
@@ -15,7 +15,7 @@ export class MessageListComponent implements OnInit {
   private route: string;
 
   constructor(private messageService: MessageService) {
-   
+
   }
 
   /**
@@ -28,12 +28,18 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    this.route = MessageFormComponent.getInstance().getThreadId() +"/messages";//il devrait y avoir un id là
+    alert("message list init");
+    this.route = document.getElementById("#threadId").textContent ?
+                                     document.getElementById("#threadId").textContent :
+                                     MessageFormComponent.DEFAULT_TRHEAD_ID +"/messages";
+    alert(this.route);
     this.messageService.getMessages(this.route);
     this.getMessage();
   }
   public getMessage(){
+     alert("getMessage");
      this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
+     console.log("nombre de messages dans la liste :" + this.messageList.length);
   }
 
 }

@@ -6,7 +6,7 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import { MessageModel } from "../../models/MessageModel";
 import { ReplaySubject } from "rxjs/ReplaySubject";
-import { URLSERVER } from "shared/constants/urls";
+import { URLSERVER } from "../../constants/urls";
 
 @Injectable()
 export class MessageService {
@@ -88,7 +88,7 @@ export class MessageService {
     
     console.log("extractAndUpdateMessageList");
      
-    if(!response.ok) console.log("status = "+response.statusText)
+    if(!response.ok) console.log("status = "+response.statusText);
     else{
     // Plus d'info sur Response ou sur la fonction .json()? si tu utilises Webstorm,
     // fait CTRL + Click pour voir la déclaration et la documentation
@@ -111,7 +111,7 @@ export class MessageService {
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
     console.log("extractMessageAndGetMessages");
     
-    if(!response.ok) console.log("status = "+response.statusText)
+    if(!response.ok) console.log("status = "+response.statusText);
     else{
     const id = response.json().id;
     const content = response.json().content;
@@ -120,7 +120,7 @@ export class MessageService {
     const updated_at = response.json().updatedAt;
     const threadId = response.json().threadId;
     const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, threadId);
-    console.log("extractMessageAndGetMessages "+threadId)
+    console.log("extractMessageAndGetMessages "+threadId);
     return messageModel;
     }
     return new MessageModel();

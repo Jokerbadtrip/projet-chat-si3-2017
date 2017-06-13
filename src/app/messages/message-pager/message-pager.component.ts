@@ -2,17 +2,18 @@ import { Component, OnInit } from "@angular/core";
 
 import { MessageService } from "../../../shared/services";
 import { MessageModel } from "../../../shared/models/MessageModel";
-import { MessageListComponent } from '../message-list/message-list.component';
+import { MessageListComponent } from "../message-list/message-list.component";
+import { PagerItem } from './pager-item-component';
 
 @Component({
-  selector: "app-message-list",
+  selector: "app-message-pager",
   templateUrl: "./message-pager.component.html",
   styleUrls: ["./message-pager.component.css"]
 })
 export class MessagePagerComponent implements OnInit {
 
   public messageList: MessageListComponent;
-  public pages: Page[];
+  public pages: PagerItem[];
   private route: string;
 
   constructor(messageList: MessageListComponent) {
@@ -35,30 +36,4 @@ export class MessagePagerComponent implements OnInit {
   }
 
 }
-class Page{
-  static nbMax = 10;
-  private currentIndice;
-  private messages: MessageModel[];
-  
-  /**
-   * function canAdd equals 0 if page is full
-   * a new one should be created
-   */
-  private canAdd(){
-    console.log("pager debug : canAdd");
-    return (Page.nbMax>this.currentIndice)?0:1;
-  }
-  
-  /**
-   * 
-   */
-  addItem(messageModel: MessageModel){
-    console.log("pager debug : addItem");
-    if(!this.currentIndice) this.currentIndice=0;
-    if(this.canAdd()>0){
-      this.messages[this.currentIndice] = messageModel;
-      return this.currentIndice++;
-    }
-     return -1;
-  }
-}
+

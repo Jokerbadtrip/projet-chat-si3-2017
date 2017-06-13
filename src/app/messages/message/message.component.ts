@@ -10,9 +10,10 @@ import { MessageModel } from "../../../shared/models/MessageModel";
 export class MessageComponent implements OnInit {
 
   @Input() message: MessageModel;
+  @Input() threadId: number;
 
   constructor() {
-    this.message = new MessageModel(0, "sexe!");
+    this.message = new MessageModel(1, "sexe!");
   }
   /**
    * Fonction ngOnInit.
