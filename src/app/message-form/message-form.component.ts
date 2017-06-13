@@ -2,12 +2,7 @@ import { Component, OnInit } from "@angular/core";
 
 import { MessageService } from "../../shared/services";
 import { MessageModel } from "../../shared/models/MessageModel";
-<<<<<<<
-import { isNumber } from "util";
-=======
 import {ChanelModel} from "../../shared/models/ChannelModel";
->>>>>>>
-
 
 @Component({
   selector: "app-message-form",
@@ -17,12 +12,6 @@ import {ChanelModel} from "../../shared/models/ChannelModel";
 export class MessageFormComponent implements OnInit {
   static currentChannel: ChanelModel;
   public message: MessageModel;
-<<<<<<<
-  private threadId;
-  private route: string;
-=======
-
->>>>>>>
 
 
 
@@ -47,26 +36,4 @@ export class MessageFormComponent implements OnInit {
     this.messageService.sendMessage(route, this.message);
     this.messageService.getMessages(route);
   }
-<<<<<<<
-
-  //called by html
-  private setId(value : string){
-    if(value && isNumber(value)){
-      this.message.threadId = Number(value);
-      console.log("setId = "+this.threadId);
-    }
-  }
-  public getThreadId(){
-    console.log("getThreadId = "+this.message.threadId);
-    if(this.threadId){
-       return this.threadId;
-    }else{
-      return "1";
-    }
-  }
-=======
-
-
-
->>>>>>>
 }
