@@ -25,7 +25,7 @@ export class ChannelService {
     this.channelList$.next([new ChanelModel(1)]);
   }
 
-  public createChannel(route: string, channel: ChanelModel){
+  public createChannel(route: string, channel: ChanelModel) {
 
     console.log("createChannel:start");
     console.log("route:" + route);
@@ -42,7 +42,13 @@ export class ChannelService {
     console.log("createChannel:end");
   }
 
-  private extractChannelAndGetChannel(response: Response, route: string): ChanelModel{
+
+  public getChannels(route: string) {
+    const finalUrl = URLSERVER + route;
+    this.http.get(finalUrl).subscribe((response) => this.exctractAndUpdateChannelList(response));
+  }
+
+  private extractChannelAndGetChannel(response: Response, route: string): ChanelModel {
     console.log("extractChannelAndGetChannel:start");
     console.log("response:" + response.json());
 
@@ -55,7 +61,7 @@ export class ChannelService {
     return channel;
   }
 
-  private exctractAndUpdateChannelList(response){
+  private exctractAndUpdateChannelList(response) {
     console.log("exctractAndUpdateChannelList");
     const channelList = response.json() || [];
     this.channelList$.next(channelList);
