@@ -29,13 +29,13 @@ export class ChannelService {
 
     console.log("createChannel:start");
     console.log("route:" + URLSERVER);
-    console.log("channel:" + channel.id);
+    console.log("channel:" + channel.id + " name:" + channel.name);
 
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
 
     if (channel) {
-      this.http.post(URLSERVER, options).subscribe((response) => this.extractChannelAndGetChannel(response));
+      this.http.post("http://projet-3a.7ight.com/api/threads", channel.name).subscribe((response) => this.extractChannelAndGetChannel(response));
       this.http.get(URLSERVER).subscribe((response) => this.exctractAndUpdateChannelList(response));
     }
     console.log("createChannel:end");
@@ -60,9 +60,11 @@ export class ChannelService {
   }
 
   private exctractAndUpdateChannelList(response) {
-    console.log("exctractAndUpdateChannelList");
+    console.log("exctractAndUpdateChannelList:start");
     const channelList = response.json() || [];
     this.channelList$.next(channelList);
+    console.log("exctractAndUpdateChannelList:end");
   }
+
 
 }
