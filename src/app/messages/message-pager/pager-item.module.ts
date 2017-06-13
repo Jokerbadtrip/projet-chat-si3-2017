@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
 import { MessageService } from "../../../shared/services";
-import { MessageModule } from '../message';
+import { MessageModule } from "../message/message.module";
 import { MessagePagerComponent } from "./";
 
 @NgModule({
@@ -13,8 +13,7 @@ import { MessagePagerComponent } from "./";
   imports: [
     MessageListComponent
   ],
-  exports: [PagerItemComponent],
-  providers: [MessageService]
+  exports: [PagerItemComponent]
 })
 export class PagerItemComponent {
  }
