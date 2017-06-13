@@ -35,7 +35,7 @@ export class ChannelService {
     const options = new RequestOptions({headers: header});
 
     if (channel) {
-      this.http.post("http://projet-3a.7ight.com/api/threads", channel.name).subscribe((response) => this.extractChannelAndGetChannel(response));
+      this.http.post(URLSERVER, channel, options).subscribe((response) => this.extractChannelAndGetChannel(response));
       this.http.get(URLSERVER).subscribe((response) => this.exctractAndUpdateChannelList(response));
     }
     console.log("createChannel:end");
@@ -49,6 +49,7 @@ export class ChannelService {
   private extractChannelAndGetChannel(response: Response): ChanelModel {
     console.log("extractChannelAndGetChannel:start");
     console.log("response:" + response.json());
+    console.log("channel response:" + response.json().name)
 
     const id = response.json().id;
     const name = response.json().name;
@@ -61,6 +62,7 @@ export class ChannelService {
 
   private exctractAndUpdateChannelList(response) {
     console.log("exctractAndUpdateChannelList:start");
+    console.log("response:" + response.json());
     const channelList = response.json() || [];
     this.channelList$.next(channelList);
     console.log("exctractAndUpdateChannelList:end");
