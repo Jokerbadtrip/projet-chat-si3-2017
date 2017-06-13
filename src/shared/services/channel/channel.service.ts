@@ -3,11 +3,13 @@ import { Http, RequestOptions, Response, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 import { URLSERVER } from "shared/constants/urls";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {ChanelModel} from "../../models/ChannelModel";
 
 @Injectable()
-export class ChannelService{
+export class ChannelService {
 
   /**
    * Url pour accéder aux données. L'url est commun à toutes les fonctions du service.

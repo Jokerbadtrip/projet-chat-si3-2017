@@ -2,16 +2,16 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
-import { ThreadFormComponent } from "./thread-form.component";
+import { ChannelFormComponent } from "./channel-form.component";
 
 @NgModule({
   declarations: [
-    ThreadFormComponent
+    ChannelFormComponent
   ],
   imports: [
     CommonModule,
     FormsModule
   ],
-  exports: [ThreadFormComponent]
+  exports: [ChannelFormComponent]
 })
-export class ThreadFormModule { }
+export class ChannelFormModule { }
