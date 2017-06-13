@@ -26,7 +26,7 @@ export class ChannelComponent implements OnInit {
   selectChannel(channel_div_id: number) {
    console.log("Click!");
    const route = this.channel.id + "/messages";
-   MessageFormComponent.currentChannel = route;
+   MessageFormComponent.currentChannel = this.channel;
    document.getElementById("#" + channel_div_id);
    this.messageService.getMessages(route);
   }
