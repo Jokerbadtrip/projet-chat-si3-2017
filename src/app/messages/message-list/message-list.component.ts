@@ -37,14 +37,15 @@ export class MessageListComponent implements OnInit {
       console.log("threadId = " + id);
     }
     this.route = id +"/messages";
-    alert(this.route);
+    console.log("messagelist :"+this.route);
     this.messageService.getMessages(this.route);
     this.getMessage();
   }
   public getMessage(){
-     alert("getMessage");
+     console.log("messagelist :"+"getMessage");
      this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      console.log("nombre de messages dans la liste :" + this.messageList.length);
   }
+
 
 }
