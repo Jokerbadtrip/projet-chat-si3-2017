@@ -2,13 +2,20 @@ h1 {
   text-align: center;
 }
 .container{
-	background-color:#e6f2ff;
+	background-color:#eeeeee;
+  min-height: 100%;
+  min-width: 100%;
+  position: fixed;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
 }
 .centered_block {
 	display : block;
-  	text-align: center;
-  	float:center;
+  top:50%;
+  text-align: center;
 }
+
 hide{
 	height: 100px;
 }
@@ -22,16 +29,20 @@ hide:FOCUS{
 
 
 .well{
-	background-color: #dddddd;
+	background-color: #333333;
 }
 .sidebar{
 	width:30%;
 	display: block;
-	background-color: #cce6ff;
+  position: relative;
+  min-height: 100%;
+	background-color: #e3e3e3;
 	margin-right: 5em;
 }
 .main{
-	background-color: #ffb366;
+  position: relative;
+	background-color: #ffffff;
+  min-height: 100%;
 	max-height:30em;
 	min-height:30em;
 }
