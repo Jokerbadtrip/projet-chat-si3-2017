@@ -1,19 +1,16 @@
-import { MessageListComponent } from '..';
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
 
-import { MessageService } from "../../../shared/services";
-import { MessageModule } from "../message/message.module";
-import { MessagePagerComponent } from "./";
-
+import { MessageModel } from '../../../shared/models/MessageModel';
+import { MessagePagerModule } from './';
+import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [
     PagerItemComponent
   ],
   imports: [
-    MessageListComponent
+    MessageModel,
+    MessagePagerModule
   ],
   exports: [PagerItemComponent]
 })
-export class PagerItemComponent {
+export class PagerItemModule {
  }

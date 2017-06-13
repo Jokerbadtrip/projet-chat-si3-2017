@@ -1,7 +1,12 @@
 
 import { MessageModel } from '../../../shared/models/MessageModel';
-
-export class PagerItem {
+import { Component } from '@angular/core';
+@Component({
+  selector: "app-pager-item",
+  templateUrl: "./pager-item.component.html",
+  styleUrls: ["./pager-item.component.css"]
+})
+export class PagerItemComponent {
   static nbMax = 10;
   private PageNumber;
   private currentIndice;
@@ -17,7 +22,7 @@ export class PagerItem {
    */
   private canAdd() {
     console.log("PagerItemr debug : canAdd");
-    return (PagerItem.nbMax>this.currentIndice)?0:1;
+    return (PagerItemComponent.nbMax>this.currentIndice)?0:1;
   }
 
   addItem(messageModel: MessageModel){

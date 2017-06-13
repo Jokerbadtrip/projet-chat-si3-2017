@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { MessageService } from "../../../shared/services";
 import { MessageModel } from "../../../shared/models/MessageModel";
 import { MessageListComponent } from "../message-list/message-list.component";
-import { PagerItem } from './pager-item-component';
+import { PagerItemComponent } from './pager-item-component';
 
 @Component({
   selector: "app-message-pager",
@@ -13,7 +13,7 @@ import { PagerItem } from './pager-item-component';
 export class MessagePagerComponent implements OnInit {
 
   public messageList: MessageListComponent;
-  public pages: PagerItem[];
+  public pages: PagerItemComponent[];
   private route: string;
 
   constructor(messageList: MessageListComponent) {

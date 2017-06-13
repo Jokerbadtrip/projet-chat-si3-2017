@@ -1,18 +1,11 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-
-import { MessageListComponent } from "../message-list/message-list.component";
-import { MessageModule } from "../message";
-import { MessageService } from "../../../shared/services";
-import { MessagePagerComponent } from "./";
-
+import { MessageService } from '../../../shared/services';
+import { MessagePagerComponent } from './';
+import { NgModule } from '@angular/core';
 @NgModule({
   declarations: [
     MessagePagerComponent
   ],
   imports: [
-    MessageListComponent,
-    MessageModule
   ],
   exports: [MessagePagerComponent],
   providers: [MessageService]
