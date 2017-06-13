@@ -1,5 +1,14 @@
-<div class="col-ld-12 bordered">
-  Message: <strong> {{message.content}} </strong> <br>
-  From: <strong>{{message.from}}</strong>
-  <div float="right">Updated at : {{message.createdAt}}</div>
+<div class="col-ld-12">
+  <div class="block">
+    <div class = "sender_text left">
+      {{message.from}} :
+    </div>
+    <div class = "message_content_text right">
+      {{message.content}}
+    </div>
+    <br>
+    <div class = "timestamp_text bottom">sent at : {{message.createdAt}}</div>
+  </div>
+
+
 </div>
