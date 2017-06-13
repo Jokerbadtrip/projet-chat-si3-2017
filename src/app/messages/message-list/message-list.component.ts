@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 
-import { MessageService } from "../../../shared/services";
+import { MessageService } from "../../../shared/services/index";
 import { MessageModel } from "../../../shared/models/MessageModel";
 import { MessageFormComponent } from "../../message-form";
 
 @Component({
   selector: "app-message-list",
   templateUrl: "./message-list.component.html",
-  styleUrls: ["./message-list.component.css"]
+  styleUrls: ["./message-list.component.css"],
 })
 export class MessageListComponent implements OnInit {
 
@@ -28,10 +28,13 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    alert("message list init");
-    this.route = document.getElementById("#threadId").textContent ?
-                                     document.getElementById("#threadId").textContent :
-                                     MessageFormComponent.DEFAULT_TRHEAD_ID +"/messages";
+    console.log("message list init");
+    var id ="1";
+    if(document.getElementById("#threadId")!=null){
+      id = document.getElementById("#threadId").textContent;
+      console.log("threadId = " + id);
+    }
+    this.route = id +"/messages";
     alert(this.route);
     this.messageService.getMessages(this.route);
     this.getMessage();

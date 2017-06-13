@@ -61,9 +61,9 @@ export class MessageService {
    * @param message
    */
   public sendMessage(route: string, message: MessageModel) {
-    //console.log("sendMessage");
-    //console.log("route = " + route);
-    //console.log("message = " + message.content);
+    console.log("sendMessage");
+    console.log("route = " + route);
+    console.log("message = " + message.content);
     const finalUrl = URLSERVER + route;
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
@@ -71,7 +71,7 @@ export class MessageService {
     if (route && message){
       this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
       this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
-      console.log("sendMessage("+route+","+message+")");
+      console.log("sendMessage(" + route + " , " + message + ")");
     }
       }, MessageService.UPDATE_VAL);
   }
@@ -119,7 +119,7 @@ export class MessageService {
     const created_at = response.json().createdAt;
     const updated_at = response.json().updatedAt;
     const threadId = response.json().threadId;
-    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, threadId);
+    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at);
     console.log("extractMessageAndGetMessages "+threadId);
     return messageModel;
     }

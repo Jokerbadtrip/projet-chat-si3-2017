@@ -13,7 +13,6 @@ import { NgModule } from "@angular/core";
     MessageModule,
     PagerItemModule
  ],
-  
   exports: [MessagePagerComponent],
   providers: [MessageService]
 })
