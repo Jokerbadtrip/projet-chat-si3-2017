@@ -1,6 +1,14 @@
-<p>
-  <input type="text" class="form-control" id="name" required  [(ngModel)]="message.content" name="name">
-  <button class="btn btn-primary" (click)="sendMessage()"> Send </button>
+<div class="row container well">
+	<div class="col-md-7">
+		Le numéro du thread :<input type="numeric" class="form-control"
+			id="threadId" [(ngModel)]="MessageFormComponent.threadId" name="threadId" min="0" max="99" required>
+		Le contenu du message :<input type="text" class="form-control"
+			id="name" required [(ngModel)]="message.content" name="name">
+	</div>
+	<div class="col-md-3" align="center">
+		<button class="btn btn-primary" (click)="sendMessage(); setId();">
+			Send</button>
+	</div>
+</div>
+<p>Message model: {{message | json}}</p>
 
-  <br>Message model: {{message | json}}
-</p>

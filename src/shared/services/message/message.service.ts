@@ -10,7 +10,7 @@ import { URLSERVER } from "shared/constants/urls";
 
 @Injectable()
 export class MessageService {
-
+  private static UPDATE_VAL = 60000;
   /**
    * Url pour accéder aux données. L'url est commun à toutes les fonctions du service.
    * Il permet d'accéder aux channels. À partir de cet url, vous pourrez accéder aux messages.
@@ -71,9 +71,9 @@ export class MessageService {
     if (route && message){
       this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
       this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
+      console.log("sendMessage("+route+","+message+")");
     }
-    console.log("end-sendMessage - interval");
-      }, 3000);
+      }, MessageService.UPDATE_VAL);
   }
 
   /**
@@ -85,12 +85,17 @@ export class MessageService {
    * @param response
    */
   extractAndUpdateMessageList(response: Response) {
+    
     console.log("extractAndUpdateMessageList");
+     
+    if(!response.ok) console.log("status = "+response.statusText)
+    else{
     // Plus d'info sur Response ou sur la fonction .json()? si tu utilises Webstorm,
     // fait CTRL + Click pour voir la déclaration et la documentation
     const messageList = response.json() || []; // ExtractMessage: Si response.json() est undefined ou null,
     // messageList prendra la valeur tableau vide: [];
     this.messageList$.next(messageList); // On pousse les nouvelles données dans l'attribut messageList$
+    }
   }
 
   /**
@@ -104,16 +109,20 @@ export class MessageService {
    * @returns {any|{}}
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
-    //console.log("extractMessageAndGetMessages");
-    //console.log("response" + response.json());
+    console.log("extractMessageAndGetMessages");
+    
+    if(!response.ok) console.log("status = "+response.statusText)
+    else{
     const id = response.json().id;
     const content = response.json().content;
     const fromWho = response.json().from;
     const created_at = response.json().createdAt;
     const updated_at = response.json().updatedAt;
     const threadId = response.json().threadId;
-    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, (threadId) ? 1 : threadId);
-    //console.log("end - extractMessageAndGetMessages" + messageModel.content);
+    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, threadId);
+    console.log("extractMessageAndGetMessages "+threadId)
     return messageModel;
-  }
+    }
+    return new MessageModel();
+  }  
 }

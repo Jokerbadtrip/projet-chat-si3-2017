@@ -1,5 +1,5 @@
 /**
  * added by max
  */
-export {MessageListComponent} from "./message-.component";
-export {MessageListModule} from "./message-pager.module";
+export {MessagePagerComponent} from "./message-pager.component";
+export {MessagePagerModule} from "./message-pager.module";
