@@ -11,7 +11,8 @@ import { MessageService } from "../shared/services/message/message.service";
 import { MessagePagerModule } from './messages/message-pager';
 import { MessagePagerComponent } from './messages/message-pager/message-pager.component';
 import { PagerItemComponent } from './messages/message-pager/pager-item-component';
-import { PagerItemComponent } from './messages/message-pager/pager-item.module';
+import { PagerItemModule } from './messages/message-pager/pager-item.module';
+
 
 @NgModule({
   declarations: [
@@ -19,15 +20,13 @@ import { PagerItemComponent } from './messages/message-pager/pager-item.module';
     MessageFormComponent,
     MessageListComponent,
     MessageComponent,
-    MessagePagerComponent,
-    PagerItemComponent
+    MessagePagerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-   MessagePagerModule,
-   PagerItemModule
+    MessagePagerModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

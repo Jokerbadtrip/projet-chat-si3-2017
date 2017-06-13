@@ -1,19 +1,21 @@
 
 import { MessageModel } from '../../../shared/models/MessageModel';
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+
 @Component({
   selector: "app-pager-item",
   templateUrl: "./pager-item.component.html",
   styleUrls: ["./pager-item.component.css"]
 })
+
 export class PagerItemComponent {
   static nbMax = 10;
   private PageNumber;
   private currentIndice;
   private messages: MessageModel[];
 
-  constructor(currentIndice : number) {
-    this.currentIndice = currentIndice;
+  constructor() {
+    this.currentIndice = 1;
   }
   
   /**
