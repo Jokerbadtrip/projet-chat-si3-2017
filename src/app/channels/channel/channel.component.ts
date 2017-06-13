@@ -15,7 +15,7 @@ export class ChannelComponent implements OnInit {
  @Input() channel: ChanelModel;
 
  constructor(private channelService: ChannelService) {
-  this.channel = new ChanelModel(9000, "channel_name");
+  this.channel = new ChanelModel(0, "channel_name");
  }
 
 
