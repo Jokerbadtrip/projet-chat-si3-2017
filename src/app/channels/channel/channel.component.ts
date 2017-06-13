@@ -23,11 +23,10 @@ export class ChannelComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  selectChannel(channel_div_id: number) {
+  selectChannel() {
    console.log("Click!");
    const route = this.channel.id + "/messages";
    MessageFormComponent.currentChannel = this.channel;
-   document.getElementById("#" + channel_div_id);
    this.messageService.getMessages(route);
   }
 
