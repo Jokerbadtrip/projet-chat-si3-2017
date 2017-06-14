@@ -12,13 +12,14 @@ import { PagerItemComponent } from './pager-item-component';
   styleUrls: ["./message-pager.component.css"]
 })
 export class MessagePagerComponent implements OnInit {
-
-  public messageList: MessageModel[];
+  static pageIndice;
   public pages: Page[];
+  private messageList: MessageModel[];
   private route: string;
 
   constructor(private messageService : MessageService) {
     this.route = "page/1";//il devrait y avoir un id là
+    MessagePagerComponent.pageIndice = 1;
   }
 
   /**
@@ -31,13 +32,30 @@ export class MessagePagerComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    
+    //first request 
+    this.requestMessages();
+    while(this.messageList.length>0){
+      console.log("page number = " + this.pages.length);
+      this.getMessageList();//fills one page
+      this.requestMessages();
+    }
   }
-  
-    public getMessageList(){
-     console.log("message-pager :"+"getMessage");
+  private requestMessages() {
      this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      console.log("nombre de messages dans la liste :" + this.messageList.length);
+  }
+  public getMessageList() {
+     console.log("message-pager :" + "getMessageList");
+     for(let i = 0; i < this.messageList.length; i++) {
+       if (this.messageList[i] != null)
+          if (this.pages[MessagePagerComponent.pageIndice].addItem(this.messageList[i]) < 0) {
+            MessagePagerComponent.pageIndice++;
+            var res = this.pages[MessagePagerComponent.pageIndice].addItem(this.messageList[i]);
+            if(res<0) console.log("problem retrieving messages");
+          }
+
+     }
+    console.log("getMessageList - end");
   }
 
 }

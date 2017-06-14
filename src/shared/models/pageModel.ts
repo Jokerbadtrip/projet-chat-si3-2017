@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
 
 export class Page {
   static nbPage;
-  static nbMax = 10;
+  static nbMax = 20;
   private PageNumber;
   private currentIndice;
   private messages: MessageModel[];
