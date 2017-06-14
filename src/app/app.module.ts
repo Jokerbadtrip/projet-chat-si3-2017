@@ -8,13 +8,13 @@ import { AppComponent } from "./app.component";
 
 import { MessageComponent, MessageListComponent, MessageModule } from "./messages";
 import { MessageFormComponent } from "./forms/message-form";
-import { PagerItemComponent } from "./messages/message-pager/pager-item-component";
-import { MessagePagerComponent } from "./messages/message-pager/message-pager.component";
 import {ChannelFormComponent} from "./forms/channel-form/channel-form.component";
 import {ChannelService} from "../shared/services/channel/channel.service";
 import {ChannelListComponent} from "./channels/channel-list/channel-list.component";
 import {ChannelModule} from "./channels/channel/channel.module";
 import {FormComponent} from "./forms/forms.component";
+import {MessageHistoryComponent} from "./messages/message-history/message-history.component";
+import {MessageHistoryModule} from "./messages/message-history/message-history.module";
 
 
 
@@ -26,8 +26,6 @@ import {FormComponent} from "./forms/forms.component";
     ChannelListComponent,
     ChannelFormComponent,
     MessageComponent,
-    MessagePagerComponent,
-    PagerItemComponent,
     FormComponent
   ],
   imports: [
