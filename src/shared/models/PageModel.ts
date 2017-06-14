@@ -1,8 +1,9 @@
 
-import { MessageModel } from './MessageModel';
+import { MessageModel } from "./MessageModel";
 import { Component } from "@angular/core";
 
-export class Page {
+export class PageModel {
+  
   static nbPage;
   static nbMax = 20;
   private PageNumber;
@@ -10,9 +11,9 @@ export class Page {
   private messages: MessageModel[];
 
   constructor() {
-    if(Page.nbPage==null) Page.nbPage = 0;
-    this.currentIndice = Page.nbPage;
-    Page.nbPage++;
+    if(PageModel.nbPage==null) PageModel.nbPage = 0;
+    this.currentIndice = PageModel.nbPage;
+    PageModel.nbPage++;
   }
   
   /**
@@ -21,7 +22,7 @@ export class Page {
    */
   private canAdd() {
     console.log("PagerItemr debug : canAdd");
-    return (Page.nbMax>this.currentIndice)?0:1;
+    return (PageModel.nbMax>this.currentIndice)?0:1;
   }
 
   addItem(messageModel: MessageModel){

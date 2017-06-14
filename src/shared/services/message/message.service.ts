@@ -61,9 +61,9 @@ export class MessageService {
    * @param message
    */
   public sendMessage(route: string, message: MessageModel) {
-    console.log("sendMessage");
-    console.log("route = " + route);
-    console.log("message = " + message.content);
+    //console.log("sendMessage");
+    //console.log("route = " + route);
+    //console.log("message = " + message.content);
     const finalUrl = URLSERVER + route;
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
@@ -71,7 +71,7 @@ export class MessageService {
     if (route && message) {
       this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
       this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
-      console.log("sendMessage(" + route + " , " + message + ")");
+      //console.log("sendMessage(" + route + " , " + message + ")");
     }
   }
 
@@ -85,7 +85,7 @@ export class MessageService {
    */
   extractAndUpdateMessageList(response: Response) {
 
-    console.log("extractAndUpdateMessageList");
+    //console.log("extractAndUpdateMessageList");
 
     if (!response.ok) {console.log("status = " + response.statusText); }
 
@@ -108,7 +108,7 @@ export class MessageService {
    * @returns {any|{}}
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
-    console.log("extractMessageAndGetMessages");
+    //console.log("extractMessageAndGetMessages");
 
     if (!response.ok){console.log("status = " + response.statusText); }
 
