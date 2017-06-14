@@ -1,11 +1,20 @@
 .messages_content{
 
   display: block;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  max-height: 75%;
   max-width: 100%;
   margin-left: 10%;
   margin-right: 10%;
+  height: stretch;
+  width: stretch;
+}
+
+
+
+.bottom_alignment{
+
+  position: absolute;
+  bottom: 2%;
+  left: 5%;
+  right: 5%;
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import {ChanelModel} from "../../shared/models/ChannelModel";
-import {ChannelService} from "../../shared/services/channel/channel.service";
+import {ChanelModel} from "../../../shared/models/ChannelModel";
+import {ChannelService} from "../../../shared/services/channel/channel.service";
 
 @Component({
   selector: "app-channel-form",
@@ -8,7 +8,7 @@ import {ChannelService} from "../../shared/services/channel/channel.service";
   styleUrls : ["./channel-form.component.css"]
 })
 
-export class ChannelFormComponent implements OnInit{
+export class ChannelFormComponent implements OnInit {
 
   public channel: ChanelModel;
 

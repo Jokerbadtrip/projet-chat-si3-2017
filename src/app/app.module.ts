@@ -1,4 +1,4 @@
-import { MessageService } from '../shared/services';
+import { MessageService } from "../shared/services";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
@@ -7,17 +7,14 @@ import { HttpModule } from "@angular/http";
 import { AppComponent } from "./app.component";
 
 import { MessageComponent, MessageListComponent, MessageModule } from "./messages";
-import { MessageFormComponent } from "./message-form";
-import { PagerItemModule } from './messages/message-pager/pager-item.module';
-import { PagerItemComponent } from './messages/message-pager/pager-item-component';
-import { MessagePagerComponent } from './messages/message-pager/message-pager.component';
-import { MessagePagerModule } from './messages/message-pager';
-import {ChannelFormComponent} from "./channel-form/channel-form.component";
+import { MessageFormComponent } from "./forms/message-form";
+import { PagerItemComponent } from "./messages/message-pager/pager-item-component";
+import { MessagePagerComponent } from "./messages/message-pager/message-pager.component";
+import {ChannelFormComponent} from "./forms/channel-form/channel-form.component";
 import {ChannelService} from "../shared/services/channel/channel.service";
 import {ChannelListComponent} from "./channels/channel-list/channel-list.component";
 import {ChannelModule} from "./channels/channel/channel.module";
-import {ChannelListModule} from "./channels/channel-list/channel-list.module";
-import {ChannelFormModule} from "./channel-form/channel-form.module";
+import {FormComponent} from "./forms/forms.component";
 
 
 @NgModule({
@@ -29,13 +26,15 @@ import {ChannelFormModule} from "./channel-form/channel-form.module";
     ChannelFormComponent,
     MessageComponent,
     MessagePagerComponent,
-    PagerItemComponent
+    PagerItemComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    ChannelModule
+    ChannelModule,
+    FormsModule
   ],
   providers: [MessageService, ChannelService],
   bootstrap: [AppComponent]

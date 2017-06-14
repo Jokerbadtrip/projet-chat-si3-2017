@@ -3,6 +3,8 @@ h1 {
 }
 .container{
 	background-color:#eeeeee;
+  position: relative;
+  min-width: 100%;
   height: calc(100vh - 24px);
 }
 .centered_block {
@@ -24,15 +26,14 @@ hide:FOCUS{
 
 .well{
 	background-color: #333333;
-  height:calc(100vh - 24px);
 }
 .sidebar{
 	background-color: #e3e3e3;
-  height: calc(100vh - 24px);
+  [height.px]:"main_div.offsetHeight";
 }
 .main{
 	background-color: #ffffff;
-  height: calc(100vh - 24px);
+  [height.px]:"main_div.offsetHeight";
 }
 .scrollable{
 	overflow: scroll;
@@ -44,5 +45,6 @@ hide:FOCUS{
 
 }
 bottom{
-	float:middle;
+  [height.px]:"main_div.offsetHeight";
+
 }

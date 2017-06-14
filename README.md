@@ -234,7 +234,7 @@ dans le `selector`.
 ```
 
 
-`message-form.component.ts`
+`message-forms.component.ts`
 ```
 @Component({
   selector: 'app-message-form', <-- nom de la balise

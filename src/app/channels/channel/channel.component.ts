@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ChanelModel } from "../../../shared/models/ChannelModel";
 import {ChannelService} from "../../../shared/services/channel/channel.service";
 import {MessageService} from "../../../shared/services/message/message.service";
-import {MessageFormComponent} from "../../message-form/message-form.component";
+import {MessageFormComponent} from "../../forms/message-form/message-form.component";
 
 @Component({
   selector: "app-channel",
