@@ -14,7 +14,6 @@ import { MessagePagerComponent } from './messages/message-pager/message-pager.co
 import { PagerItemComponent } from './messages/message-pager/pager-item-component';
 import { PagerItemModule } from './messages/message-pager/pager-item.module';
 
-import { MessageService } from "../shared/services/message/message.service";
 import {ChannelFormComponent} from "./channel-form/channel-form.component";
 import {ChannelService} from "../shared/services/channel/channel.service";
 
@@ -28,7 +27,7 @@ import {ChannelService} from "../shared/services/channel/channel.service";
     MessageComponent,
 
     MessagePagerComponent,
-    PagerItemComponent
+    PagerItemComponent,
 
     ChannelFormComponent
 
