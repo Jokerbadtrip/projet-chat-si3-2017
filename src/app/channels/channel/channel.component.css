@@ -1,6 +1,3 @@
-.item{
-	border-color: gray;
-	border-bottom-style: solid;
-	border-bottom-width: 2px;
-	
+.channel_name{
+  font-weight: bold;
 }

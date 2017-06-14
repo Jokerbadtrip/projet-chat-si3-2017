@@ -1,5 +1,5 @@
 <div class="col-ld-12">
-  <div class="block">
+  <div class="block" *ngIf="message.from && message.content && message.createdAt ">
     <div class = "sender_text left">
       {{message.from}} :
     </div>
