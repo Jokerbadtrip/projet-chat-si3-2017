@@ -7,13 +7,12 @@ import { MessageService } from "../../../shared/services";
 
 @NgModule({
   declarations: [
-    MessageListComponent
   ],
   imports: [
     CommonModule,
     MessageModule
   ],
   exports: [MessageListComponent],
-  providers: [MessageService]
+  providers: []
 })
 export class MessageListModule { }

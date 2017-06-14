@@ -3,17 +3,19 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { MessageFormComponent } from "./message-form.component";
-import { MessageService } from "../../shared/services/message/message.service";
+import { MessageService } from "../../shared/services";
+import { MessageModule } from '../messages';
+
 
 @NgModule({
   declarations: [
-    MessageFormComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    MessageModule
   ],
   exports: [MessageFormComponent],
-  providers: [MessageService]
+  providers: []
 })
 export class MessageFormModule { }

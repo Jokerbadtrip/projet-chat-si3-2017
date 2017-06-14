@@ -6,11 +6,11 @@ import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import { MessageModel } from "../../models/MessageModel";
 import { ReplaySubject } from "rxjs/ReplaySubject";
-import { URLSERVER } from "shared/constants/urls";
+import { URLSERVER } from "../../constants/urls";
 
 @Injectable()
 export class MessageService {
-
+  private static UPDATE_VAL = 60000;
   /**
    * Url pour accéder aux données. L'url est commun à toutes les fonctions du service.
    * Il permet d'accéder aux channels. À partir de cet url, vous pourrez accéder aux messages.
@@ -64,16 +64,18 @@ export class MessageService {
     console.log("sendMessage");
     console.log("route = " + route);
     console.log("message = " + message.content);
-
     const finalUrl = URLSERVER + route;
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
 
-    if (route && message) {
-      this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
-      this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
-    }
-    console.log("end-sendMessage");
+    setInterval(() => {
+        if (route && message) {
+
+          this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
+          this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
+          console.log("sendMessage(" + route + " , " + message + ")");
+        }
+      }, MessageService.UPDATE_VAL);
   }
 
   /**
@@ -85,12 +87,17 @@ export class MessageService {
    * @param response
    */
   extractAndUpdateMessageList(response: Response) {
+    
     console.log("extractAndUpdateMessageList");
+     
+    if(!response.ok) console.log("status = "+response.statusText);
+    else{
     // Plus d'info sur Response ou sur la fonction .json()? si tu utilises Webstorm,
     // fait CTRL + Click pour voir la déclaration et la documentation
     const messageList = response.json() || []; // ExtractMessage: Si response.json() est undefined ou null,
     // messageList prendra la valeur tableau vide: [];
     this.messageList$.next(messageList); // On pousse les nouvelles données dans l'attribut messageList$
+    }
   }
 
   /**
@@ -105,15 +112,19 @@ export class MessageService {
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
     console.log("extractMessageAndGetMessages");
-    console.log("response" + response.json());
+    
+    if(!response.ok) console.log("status = "+response.statusText);
+    else{
     const id = response.json().id;
     const content = response.json().content;
     const fromWho = response.json().from;
     const created_at = response.json().createdAt;
     const updated_at = response.json().updatedAt;
     const threadId = response.json().threadId;
-    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at, (threadId) ? 1 : threadId);
-    console.log("end - extractMessageAndGetMessages" + messageModel.content);
+    const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at);
+    console.log("extractMessageAndGetMessages "+threadId);
     return messageModel;
-  }
+    }
+    return new MessageModel();
+  }  
 }

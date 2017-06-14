@@ -1,23 +1,24 @@
 import { Component, OnInit } from "@angular/core";
 
-import { MessageService } from "../../../shared/services/index";
+import { MessageService } from "../../../shared/services";
 import { MessageModel } from "../../../shared/models/MessageModel";
-import { MessageFormComponent } from "../../message-form";
+import { Page } from '../../../shared/models/pageModel';
+import { MessageListComponent } from "../message-list/message-list.component";
+import { PagerItemComponent } from './pager-item-component';
 
 @Component({
-  selector: "app-message-list",
-  templateUrl: "./message-list.component.html",
-  styleUrls: ["./message-list.component.css"],
+  selector: "app-message-pager",
+  templateUrl: "./message-pager.component.html",
+  styleUrls: ["./message-pager.component.css"]
 })
-export class MessageListComponent implements OnInit {
+export class MessagePagerComponent implements OnInit {
 
   public messageList: MessageModel[];
-  private messageService: MessageService;
+  public pages: Page[];
   private route: string;
 
-  constructor(messageService: MessageService) {
-    this.messageService = messageService;
-     console.log("messageListControler");
+  constructor(private messageService : MessageService) {
+    this.route = "page/1";//il devrait y avoir un id là
   }
 
   /**
@@ -30,21 +31,14 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    console.log("message list init");
-    var id ="1";
-    if(document.getElementById("#threadId")!=null){
-      id = document.getElementById("#threadId").textContent;
-      console.log("threadId = " + id);
-    }
-    this.route = id +"/messages";
-    alert(this.route);
-    this.messageService.getMessages(this.route);
-    this.getMessage();
+    
   }
-  public getMessage(){
+  
+    public getMessageList(){
      alert("getMessage");
      this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      console.log("nombre de messages dans la liste :" + this.messageList.length);
   }
 
 }
+
