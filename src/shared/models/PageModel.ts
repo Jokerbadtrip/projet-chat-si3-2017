@@ -12,7 +12,7 @@ export class PageModel {
 
   constructor() {
     if(PageModel.nbPage==null) PageModel.nbPage = 0;
-    this.currentIndice = PageModel.nbPage;
+    this.currentIndice = Number(PageModel.nbPage);
     PageModel.nbPage++;
   }
   
@@ -21,12 +21,12 @@ export class PageModel {
    * a new one should be created
    */
   private canAdd() {
-    console.log("PagerItemr debug : canAdd");
+    console.log("PagerItem debug : canAdd");
     return (PageModel.nbMax>this.currentIndice)?0:1;
   }
 
   addItem(messageModel: MessageModel){
-    console.log("PagerItemr debug : addItem");
+    console.log("PagerItem debug : addItem");
     if(!this.currentIndice) this.currentIndice=0;
     if(this.canAdd()>0){
       this.messages[this.currentIndice] = messageModel;

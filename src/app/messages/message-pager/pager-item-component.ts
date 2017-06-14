@@ -8,14 +8,15 @@ import { Component, Input } from "@angular/core";
   templateUrl: "./pager-item.component.html",
   styleUrls: ["./pager-item.component.css"]
 })
- 
+
 export class PagerItemComponent {
   @Input() page: PageModel;
-  private pageIndice : number;
+  private pageIndice: number;
 
-  constructor() {
-    this.pageIndice = 1;
-    this.page = new PageModel();
+  constructor(page: PageModel) {
+    console.log("PagerItemComponent constructor");
+    this.pageIndice = PageModel.nbPage;
+    this.page = page;
   }
 
 }

@@ -21,8 +21,10 @@ export class MessagePagerComponent implements OnInit {
   private route: string;
 
   constructor(private messageService : MessageService) {
+    console.log("MessagePagerComponent constructor");
     this.route = "page/1";//il devrait y avoir un id là
     MessagePagerComponent.pageIndice = 1;
+    
   }
 
   /**
@@ -39,7 +41,7 @@ export class MessagePagerComponent implements OnInit {
   }
   
   public buildPagerItem(){
-    
+    console.log("buildPagerItem");
      //first request 
     this.requestMessages();
     while(this.messageList.length>0){

@@ -16,6 +16,7 @@ export class MessageListComponent implements OnInit {
 
 
   constructor(private messageService: MessageService) {
+    console.log("MessageListComponent constructor");
   }
 
   /**
