@@ -1,14 +1,22 @@
-<div class="row container well" ngController="MessageFormComponent">
-	<div class="col-md-7">
-		Le numéro du thread :<input type="text" class="form-control"
-			id="threadId" name="threadId" min="0" max="99" required>
-		Le contenu du message :<input type="text" class="form-control"
-			id="name" required [(ngModel)]="message.content" name="name" required>
+<div class="formular-position" ngController="MessageFormComponent">
+
+
+  <div>
+
+    <app-message-pager></app-message-pager>
+
+  </div>
+
+
+	<div >
+			Message content :
+    <input type="text" class="form-control"
+				id="name" required [(ngModel)]="message.content" name="name" required>
 	</div>
-	<div class="col-md-3" align="center">
-		<button class="btn btn-primary" (click)="sendMessage();">
-			Send</button>
+	<div >
+			<button class="btn btn-primary" (click)="sendMessage();">
+				Send</button>
 	</div>
 </div>
-<p>Message model: {{message | json}}</p>
+
 

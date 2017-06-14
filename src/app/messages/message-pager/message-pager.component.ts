@@ -35,7 +35,7 @@ export class MessagePagerComponent implements OnInit {
   }
   
     public getMessageList(){
-     alert("getMessage");
+     console.log("message-pager :"+"getMessage");
      this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      console.log("nombre de messages dans la liste :" + this.messageList.length);
   }

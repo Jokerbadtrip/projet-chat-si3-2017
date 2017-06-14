@@ -9,6 +9,7 @@ import { MessageModule } from '../messages';
 
 @NgModule({
   declarations: [
+    MessageFormComponent
   ],
   imports: [
     CommonModule,

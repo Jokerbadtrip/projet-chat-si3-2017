@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 import { MessageService } from "../../../shared/services/index";
 import { MessageModel } from "../../../shared/models/MessageModel";
-import { MessageFormComponent } from "../../message-form";
+import {Observable} from "rxjs/Rx";
+import {ChannelService} from "../../../shared/services/channel/channel.service";
 
 @Component({
   selector: "app-message-list",
@@ -12,12 +13,10 @@ import { MessageFormComponent } from "../../message-form";
 export class MessageListComponent implements OnInit {
 
   public messageList: MessageModel[];
-  private messageService: MessageService;
-  private route: string;
 
-  constructor(messageService: MessageService) {
-    this.messageService = messageService;
-     console.log("messageListControler");
+
+
+  constructor(private messageService: MessageService) {
   }
 
   /**
@@ -30,21 +29,20 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    console.log("message list init");
-    var id ="1";
-    if(document.getElementById("#threadId")!=null){
-      id = document.getElementById("#threadId").textContent;
-      console.log("threadId = " + id);
-    }
-    this.route = id +"/messages";
-    alert(this.route);
-    this.messageService.getMessages(this.route);
-    this.getMessage();
+
+    const timer = Observable.timer(2000, 5000);
+    timer.subscribe((t) => this.getMessage(t));
+
   }
-  public getMessage(){
-     alert("getMessage");
-     this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
+
+  public getMessage(timer) {
+     console.log("messagelist :" + "getMessage");
+     if (ChannelService.selectedChannel) {
+       this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages");
+       this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
+     }
      console.log("nombre de messages dans la liste :" + this.messageList.length);
   }
+
 
 }

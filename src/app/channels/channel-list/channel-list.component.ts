@@ -2,17 +2,20 @@ import { Component, OnInit } from "@angular/core";
 
 
 import { ChanelModel } from "../../../shared/models/ChannelModel";
+import {ChannelService} from "../../../shared/services/channel/channel.service";
 
 @Component({
-  selector: "app-thread-list",
-  templateUrl: "./thread-list.component.html",
+  selector: "app-channel-list",
+  templateUrl: "./channel-list.component.html",
+  styleUrls: ["./channel-list.component.css"]
 })
-export class ThreadListComponent implements OnInit {
+export class ChannelListComponent implements OnInit {
 
-  public threadList: ChanelModel[];
+  public channelList: ChanelModel[];
+  private route: string;
 
-  constructor() {
-
+  constructor(private channelService: ChannelService) {
+      this.route = "threads";
   }
 
   /**
@@ -25,7 +28,8 @@ export class ThreadListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-
+      this.channelService.getChannels();
+      this.channelService.channelList$.subscribe((channels) => this.channelList = channels);
   }
 
 }

@@ -1,16 +1,16 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
-import { ThreadComponent } from "./thread.component";
+import { ChannelComponent } from "./channel.component";
 
 @NgModule({
   declarations: [
-    ThreadComponent
+    ChannelComponent
   ],
   imports: [
     CommonModule
   ],
-  exports: [ThreadComponent],
+  exports: [ChannelComponent],
   providers: []
 })
-export class ThreadModule { }
+export class ChannelModule { }

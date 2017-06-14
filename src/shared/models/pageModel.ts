@@ -3,13 +3,16 @@ import { MessageModel } from './MessageModel';
 import { Component } from "@angular/core";
 
 export class Page {
+  static nbPage;
   static nbMax = 10;
   private PageNumber;
   private currentIndice;
   private messages: MessageModel[];
 
   constructor() {
-    this.currentIndice = 1;
+    if(Page.nbPage==null) Page.nbPage = 0;
+    this.currentIndice = Page.nbPage;
+    Page.nbPage++;
   }
   
   /**

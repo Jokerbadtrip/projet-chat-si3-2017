@@ -1,0 +1,38 @@
+.sender_text{
+  font-weight: bold;
+  color: #333333;
+}
+
+.message_content_text{
+  font-weight: normal;
+}
+
+.timestamp_text{
+  font-size: smaller;
+  color: #bab2b2;
+}
+
+.block{
+  display: block;
+}
+
+.left {
+  float: left;
+  text-align: right;
+  margin: 2px 10px;
+  display: inline;
+}
+
+
+.right {
+  float: left;
+  text-align: left;
+  margin: 2px 5px;
+  display: inline;
+}
+
+.bottom{
+  float: bottom;
+  text-align: right;
+  display: block;
+}

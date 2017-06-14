@@ -31,7 +31,7 @@ export class MessageModel {
   public updatedAt: string;
 
   /**
-   * Identifiant de la thread
+   * Identifiant de la channel
    */
   public threadId: number;
 

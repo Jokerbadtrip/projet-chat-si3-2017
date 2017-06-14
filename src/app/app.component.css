@@ -1,8 +1,48 @@
 h1 {
   text-align: center;
 }
-.centreVerticalement {
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
+.container{
+	background-color:#eeeeee;
+  height: calc(100vh - 24px);
+}
+.centered_block {
+	display : block;
+  align: center;
+}
+
+hide{
+	height: 100px;
+}
+hide:FOCUS{
+	height: auto;
+}
+
+.min_margin{
+	margin-top: 3%;
+}
+
+
+.well{
+	background-color: #333333;
+  height:calc(100vh - 24px);
+}
+.sidebar{
+	background-color: #e3e3e3;
+  height: calc(100vh - 24px);
+}
+.main{
+	background-color: #ffffff;
+  height: calc(100vh - 24px);
+}
+.scrollable{
+	overflow: scroll;
+}
+.left{
+	float:left;
+	align:left;
+	text-align: left;
+
+}
+bottom{
+	float:middle;
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 import { MessageService } from "../../shared/services";
 import { MessageModel } from "../../shared/models/MessageModel";
-import { isNumber } from "util";
-
+import {ChanelModel} from "../../shared/models/ChannelModel";
+import {ChannelService} from "../../shared/services/channel/channel.service";
 
 @Component({
   selector: "app-message-form",
@@ -11,16 +11,15 @@ import { isNumber } from "util";
   styleUrls: ["./message-form.component.css"]
 })
 export class MessageFormComponent implements OnInit {
-  private DEFAULT_TRHEAD_ID = 1;
   public message: MessageModel;
-  private threadId;
-  private route: string;
+
+
 
   constructor(private messageService: MessageService) {
-    this.message = new MessageModel(1, "sexe", ">.<");
-    this.route = "1/messages";
-    this.threadId = 1;
-    console.log("route = " + this.route + " threadId =" + this.threadId);
+    if (!ChannelService.selectedChannel) {
+      ChannelService.selectedChannel = new ChanelModel(1);
+    }
+    this.message = new MessageModel(1, "Hello", "moi");
   }
   ngOnInit() {  }
 
@@ -31,24 +30,10 @@ export class MessageFormComponent implements OnInit {
    * ainsi que le message à envoyer. Ce dernier correspond à l'objet MessageModel que l'utilisateur rempli à travers l'input.
    */
   sendMessage() {
-    //document.getElementById("#threadId").getAttribute("text")
-    this.setId("1");
-    this.messageService.sendMessage(this.threadId+this.route, this.message);
-  }
-
-  //called by html
-  private setId(value : string){
-    if(value && isNumber(value)){
-      this.message.threadId = Number(value);
-      console.log("setId = "+this.threadId);
-    }
-  }
-  public getThreadId(){
-    console.log("getThreadId = "+this.message.threadId);
-    if(this.threadId){
-       return this.threadId;
-    }else{
-      return "1";
-    }
+    console.log("Click!");
+    console.log("currentChannel:" + ChannelService.selectedChannel);
+    const route = ChannelService.selectedChannel.id + "/messages";
+    this.messageService.sendMessage(route, this.message);
+    this.messageService.getMessages(route);
   }
 }

@@ -1,4 +1,14 @@
-<p>
-  Message: <strong> {{message.content}} </strong> <br>
-  From: <strong>{{message.from}}</strong>
-</p>
+<div class="col-ld-12">
+  <div class="block" *ngIf="message.from && message.content && message.createdAt ">
+    <div class = "sender_text left">
+      {{message.from}} :
+    </div>
+    <div class = "message_content_text right">
+      {{message.content}}
+    </div>
+    <br>
+    <div class = "timestamp_text bottom">sent at : {{message.createdAt}}</div>
+  </div>
+
+
+</div>

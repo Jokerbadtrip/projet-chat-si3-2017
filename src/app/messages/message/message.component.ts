@@ -13,7 +13,7 @@ export class MessageComponent implements OnInit {
   @Input() threadId: number;
 
   constructor() {
-    this.message = new MessageModel(1, "sexe!");
+    this.message = new MessageModel(1);
   }
   /**
    * Fonction ngOnInit.

@@ -1,6 +1,14 @@
 <!-- On boucle sur tous les messages de notre liste de messages stockés dans messageList -->
-<div *ngFor="let currentMessage of messageList">
-  <!--CurrentMessage est le message courant dans la boucle -->
-  <!--On donne notre message courant en Input (en entrée, parametre) du composant Message qui va lui l'afficher.-->
-  <app-message [message]="currentMessage"></app-message>
+<div class="messages_content">
+
+  <div  *ngFor="let currentMessage of messageList.slice().reverse()">
+    <!--CurrentMessage est le message courant dans la boucle -->
+    <!--On donne notre message courant en Input (en entrée, parametre) du composant Message qui va lui l'afficher.-->
+    <div *ngIf="messageList.length > 0">
+      <app-message [message]="currentMessage"></app-message>
+    </div>
+  </div>
+
 </div>
+
+

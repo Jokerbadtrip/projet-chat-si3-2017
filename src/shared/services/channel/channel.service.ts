@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Http, RequestOptions, Response, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
-import { URLSERVER } from "shared/constants/urls";
+import { URLSERVER } from "../../constants/urls";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import {ReplaySubject} from "rxjs/ReplaySubject";
@@ -10,6 +10,8 @@ import {ChanelModel} from "../../models/ChannelModel";
 
 @Injectable()
 export class ChannelService {
+
+  static selectedChannel: ChanelModel;
 
   /**
    * Url pour accéder aux données. L'url est commun à toutes les fonctions du service.
@@ -25,26 +27,31 @@ export class ChannelService {
     this.channelList$.next([new ChanelModel(1)]);
   }
 
-  public createChannel(route: string, channel: ChanelModel){
+  public createChannel(channel: ChanelModel) {
 
     console.log("createChannel:start");
-    console.log("route:" + route);
-    console.log("channel:" + channel.id);
+    console.log("route:" + URLSERVER);
+    console.log("channel:" + channel.id + " name:" + channel.name);
 
-    const finalUrl = URLSERVER + route;
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
 
-    if (route && channel) {
-      this.http.post(finalUrl, options).subscribe((response) => this.extractChannelAndGetChannel(response, route));
-      this.http.get(finalUrl).subscribe((response) => this.exctractAndUpdateChannelList(response));
+    if (channel) {
+      this.http.post(URLSERVER, channel, options).subscribe((response) => this.extractChannelAndGetChannel(response));
+      this.http.get(URLSERVER).subscribe((response) => this.exctractAndUpdateChannelList(response));
     }
     console.log("createChannel:end");
   }
 
-  private extractChannelAndGetChannel(response: Response, route: string): ChanelModel{
+
+  public getChannels() {
+    this.http.get(URLSERVER).subscribe((response) => this.exctractAndUpdateChannelList(response));
+  }
+
+  private extractChannelAndGetChannel(response: Response): ChanelModel {
     console.log("extractChannelAndGetChannel:start");
     console.log("response:" + response.json());
+    console.log("channel response:" + response.json().name + " id:" + response.json().id);
 
     const id = response.json().id;
     const name = response.json().name;
@@ -55,10 +62,13 @@ export class ChannelService {
     return channel;
   }
 
-  private exctractAndUpdateChannelList(response){
-    console.log("exctractAndUpdateChannelList");
+  private exctractAndUpdateChannelList(response) {
+    console.log("exctractAndUpdateChannelList:start");
+    console.log("response:" + response.json());
     const channelList = response.json() || [];
     this.channelList$.next(channelList);
+    console.log("exctractAndUpdateChannelList:end");
   }
+
 
 }
