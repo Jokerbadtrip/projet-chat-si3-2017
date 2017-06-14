@@ -26,6 +26,7 @@ import {MessageHistoryModule} from "./messages/message-history/message-history.m
     ChannelListComponent,
     ChannelFormComponent,
     MessageComponent,
+    MessageHistoryComponent,
     FormComponent
   ],
   imports: [
