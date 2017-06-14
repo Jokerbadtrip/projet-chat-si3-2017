@@ -16,10 +16,10 @@ export class MessageHistoryComponent implements OnInit {
 
 
 
-  public pageNumber: number;
+  static pageNumber: number;
 
   constructor(private messageService: MessageService){
-    this.pageNumber = 0;
+    MessageHistoryComponent.pageNumber = 0;
   }
 
 
@@ -31,14 +31,16 @@ export class MessageHistoryComponent implements OnInit {
 
   requestPreviousPage(){
 
-    if (this.pageNumber !== 0) {
-      this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages?page=" + this.pageNumber);
+    if (MessageHistoryComponent.pageNumber !== 0) {
+      MessageHistoryComponent.pageNumber--;
+      this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages?page=" + MessageHistoryComponent.pageNumber);
     }
 
   }
 
   requestNextPage() {
-    this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages?page=" + this.pageNumber);
+    MessageHistoryComponent.pageNumber++;
+    this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages?page=" + MessageHistoryComponent.pageNumber);
   }
 
 

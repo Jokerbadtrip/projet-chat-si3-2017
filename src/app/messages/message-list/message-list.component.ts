@@ -4,6 +4,7 @@ import { MessageService } from "../../../shared/services/index";
 import { MessageModel } from "../../../shared/models/MessageModel";
 import {Observable} from "rxjs/Rx";
 import {ChannelService} from "../../../shared/services/channel/channel.service";
+import {MessageHistoryComponent} from "../message-history/message-history.component";
 
 @Component({
   selector: "app-message-list",
@@ -38,7 +39,7 @@ export class MessageListComponent implements OnInit {
   public getMessage(timer) {
      //console.log("messagelist :" + "getMessage");
      if (ChannelService.selectedChannel) {
-       this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages");
+       this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages?page=" + MessageHistoryComponent.pageNumber);
        this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      }
      //console.log("nombre de messages dans la liste :" + this.messageList.length);
