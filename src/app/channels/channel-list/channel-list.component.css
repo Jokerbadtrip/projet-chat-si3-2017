@@ -1,12 +1,21 @@
 .channels_content{
 
   display: block;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  max-height: 75%;
   max-width: 100%;
   margin-left: 10%;
   margin-right: 10%;
-  height: calc(100vh - 24px)
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: stretch;
+  height:80%;
+  margin: 2%;
+}
+
+.bottom_alignment{
+
+  position: relative;
+  bottom: 2%;
+  left: 5%;
+  right: 5%;
 
 }

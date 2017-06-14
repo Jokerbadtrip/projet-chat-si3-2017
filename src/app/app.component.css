@@ -5,35 +5,30 @@ h1 {
 	background-color:#eeeeee;
   position: relative;
   min-width: 100%;
-  height: calc(100vh - 24px);
+  height: 100%;
 }
 .centered_block {
 	display : block;
   align: center;
 }
 
-hide{
-	height: 100px;
-}
-hide:FOCUS{
-	height: auto;
-}
 
-.min_margin{
-	margin-top: 3%;
-}
 
+
+.forms{
+  height: 20%;
+}
 
 .well{
 	background-color: #333333;
 }
 .sidebar{
 	background-color: #e3e3e3;
-  [height.px]:"main_div.offsetHeight";
+  height: 80%;
 }
 .main{
 	background-color: #ffffff;
-  [height.px]:"main_div.offsetHeight";
+  height: 80%;
 }
 .scrollable{
 	overflow: scroll;
