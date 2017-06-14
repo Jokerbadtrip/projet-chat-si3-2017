@@ -7,6 +7,9 @@ import "rxjs/add/operator/catch";
 import { MessageModel } from "../../models/MessageModel";
 import { ReplaySubject } from "rxjs/ReplaySubject";
 import { URLSERVER } from "../../constants/urls";
+import {ChannelService} from "../channel/channel.service";
+import {forEach} from "@angular/router/src/utils/collection";
+import {ChanelModel} from "../../models/ChannelModel";
 
 @Injectable()
 export class MessageService {
@@ -72,6 +75,50 @@ export class MessageService {
       this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
       this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
       //console.log("sendMessage(" + route + " , " + message + ")");
+    }
+  }
+  private spotChannel(message: MessageModel) {
+    let mots: string[];
+    let channel: number[];
+    let nombre = 0;
+    mots = message.content.split(" ");
+    let i = 0;
+    while (i < mots.length && mots[i].charAt(0) === "/") {
+      nombre++;
+      i++;
+    }
+    channel = new Array(nombre);
+    i = 0;
+    while (i < mots.length && mots[i].charAt(0) === "/") {
+      channel[i] = +mots[i].substring(1);
+      i++;
+    }
+    return channel;
+  }
+  private spotMessage(i: number, message: MessageModel) {
+    let mots: string[];
+    mots = message.content.split(" ");
+    let messageFin = "";
+    for (i; i < mots.length; i++) {
+      console.log(i);
+      console.log(mots[i]);
+      messageFin = messageFin + mots[i] + " ";
+    }
+    return messageFin;
+  }
+
+  public sendMessage2(route: string, message: MessageModel) {
+    let channel: number[];
+    channel = this.spotChannel(message);
+    if (channel) {
+      message.content = this.spotMessage(channel.length, message);
+    }
+    console.log(message.content);
+    this.sendMessage(route, message);
+    if (channel) {
+      for (let i = 0; i < channel.length; i++) {
+        this.sendMessage(channel[i] + "/messages", message);
+      }
     }
   }
 
