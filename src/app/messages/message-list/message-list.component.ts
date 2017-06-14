@@ -15,7 +15,6 @@ export class MessageListComponent implements OnInit {
   public messageList: MessageModel[];
 
 
-
   constructor(private messageService: MessageService) {
   }
 

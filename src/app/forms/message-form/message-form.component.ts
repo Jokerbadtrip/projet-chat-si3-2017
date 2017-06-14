@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 
-import { MessageService } from "../../shared/services";
-import { MessageModel } from "../../shared/models/MessageModel";
-import {ChanelModel} from "../../shared/models/ChannelModel";
-import {ChannelService} from "../../shared/services/channel/channel.service";
+import { MessageService } from "../../../shared/services";
+import { MessageModel } from "../../../shared/models/MessageModel";
+import {ChanelModel} from "../../../shared/models/ChannelModel";
+import {ChannelService} from "../../../shared/services/channel/channel.service";
 
 @Component({
   selector: "app-message-form",
