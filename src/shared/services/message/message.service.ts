@@ -67,12 +67,14 @@ export class MessageService {
     const finalUrl = URLSERVER + route;
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
+
     setInterval(() => {
-    if (route && message){
-      this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
-      this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
-      console.log("sendMessage(" + route + " , " + message + ")");
-    }
+        if (route && message) {
+
+          this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
+          this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
+          console.log("sendMessage(" + route + " , " + message + ")");
+        }
       }, MessageService.UPDATE_VAL);
   }
 

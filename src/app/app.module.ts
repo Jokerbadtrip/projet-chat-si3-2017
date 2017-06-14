@@ -7,11 +7,17 @@ import { AppComponent } from "./app.component";
 
 import { MessageComponent, MessageListComponent, MessageModule } from "./messages";
 import { MessageFormComponent } from "./message-form";
+
 import { MessageService } from "../shared/services";
 import { MessagePagerModule } from './messages/message-pager';
 import { MessagePagerComponent } from './messages/message-pager/message-pager.component';
 import { PagerItemComponent } from './messages/message-pager/pager-item-component';
 import { PagerItemModule } from './messages/message-pager/pager-item.module';
+
+import { MessageService } from "../shared/services/message/message.service";
+import {ChannelFormComponent} from "./channel-form/channel-form.component";
+import {ChannelService} from "../shared/services/channel/channel.service";
+
 
 
 @NgModule({
@@ -20,15 +26,19 @@ import { PagerItemModule } from './messages/message-pager/pager-item.module';
     MessageFormComponent,
     MessageListComponent,
     MessageComponent,
+
     MessagePagerComponent,
     PagerItemComponent
+
+    ChannelFormComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
   ],
-  providers: [MessageService],
+  providers: [MessageService, ChannelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
