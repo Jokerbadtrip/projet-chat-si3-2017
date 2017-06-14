@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 
 import { MessageService } from "../../../shared/services";
 import { MessageModel } from "../../../shared/models/MessageModel";
-import { Page } from '../../../shared/models/pageModel';
+import { PageModel } from '../../../shared/models/PageModel';
 import { MessageListComponent } from "../message-list/message-list.component";
 import { PagerItemComponent } from './pager-item-component';
 
@@ -12,13 +12,19 @@ import { PagerItemComponent } from './pager-item-component';
   styleUrls: ["./message-pager.component.css"]
 })
 export class MessagePagerComponent implements OnInit {
-
-  public messageList: MessageModel[];
-  public pages: Page[];
+  public pages: PageModel[];
+  
+  
+  static pageIndice;
+  
+  private messageList: MessageModel[];
   private route: string;
 
   constructor(private messageService : MessageService) {
+    console.log("MessagePagerComponent constructor");
     this.route = "page/1";//il devrait y avoir un id là
+    MessagePagerComponent.pageIndice = 1;
+    
   }
 
   /**
@@ -31,13 +37,38 @@ export class MessagePagerComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    
+   this.buildPagerItem();
   }
   
-    public getMessageList(){
-     console.log("message-pager :"+"getMessage");
+  public buildPagerItem(){
+    console.log("buildPagerItem");
+     //first request 
+    this.requestMessages();
+    while(this.messageList.length>0){
+      console.log("page number = " + this.pages.length);
+      this.getMessageList();//fills one page
+      this.requestMessages();
+    }
+  }
+  private requestMessages() {
      this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      console.log("nombre de messages dans la liste :" + this.messageList.length);
+  }
+  private getMessageList() {
+     console.log("message-pager :" + "getMessageList");
+     for(let i = 0; i < this.messageList.length; i++) {
+       if (this.messageList[i] != null) {
+          if (this.pages[MessagePagerComponent.pageIndice].addItem(this.messageList[i]) < 0) {
+            MessagePagerComponent.pageIndice++;
+            let res = this.pages[MessagePagerComponent.pageIndice].addItem(this.messageList[i]);
+            if (res < 0) console.log("problem retrieving messages");
+          }
+       }else{
+         this.messageList = [];
+       }
+     }
+    
+    console.log("getMessageList - end");
   }
 
 }

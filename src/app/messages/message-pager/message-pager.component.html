@@ -1,8 +1,5 @@
-<!--
-  <div *ngFor="let page of pages">
-
-
-</div> -->
-<div class ="row justify-content-md-center centered_block">
- <app-pager-item></app-pager-item>
+<div class="container">
+	<div *ngFor="let page of pages">
+	 	<app-pager-item [page]="page"></app-pager-item>
+	 </div>
 </div>

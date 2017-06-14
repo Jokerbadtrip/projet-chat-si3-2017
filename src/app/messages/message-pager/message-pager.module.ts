@@ -1,3 +1,4 @@
+import { PageModel } from '../../../shared/models/PageModel';
 import { MessageService } from "../../../shared/services";
 import { MessageModule } from '../message/message.module';
 import { MessagePagerComponent } from "./";
@@ -11,7 +12,7 @@ import { NgModule } from "@angular/core";
   imports: [
     CommonModule,
     MessageModule,
-    PagerItemModule
+    PagerItemModule,
  ],
   exports: [MessagePagerComponent],
   providers: []

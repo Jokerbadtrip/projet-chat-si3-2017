@@ -1,6 +1,7 @@
 
 import { MessageModel } from '../../../shared/models/MessageModel';
-import { Component } from "@angular/core";
+import { PageModel } from '../../../shared/models/PageModel';
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-pager-item",
@@ -9,11 +10,13 @@ import { Component } from "@angular/core";
 })
 
 export class PagerItemComponent {
-  public static nbpages;
-  private pageIndice : number;
+  @Input() page: PageModel;
+  private pageIndice: number;
 
-  constructor() {
-    this.pageIndice = 1;
+  constructor(page: PageModel) {
+    console.log("PagerItemComponent constructor");
+    this.pageIndice = PageModel.nbPage;
+    this.page = page;
   }
 
 }

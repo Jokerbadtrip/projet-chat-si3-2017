@@ -16,6 +16,7 @@ export class MessageListComponent implements OnInit {
 
 
   constructor(private messageService: MessageService) {
+    console.log("MessageListComponent constructor");
   }
 
   /**
@@ -35,12 +36,12 @@ export class MessageListComponent implements OnInit {
   }
 
   public getMessage(timer) {
-     console.log("messagelist :" + "getMessage");
+     //console.log("messagelist :" + "getMessage");
      if (ChannelService.selectedChannel) {
        this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages");
        this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      }
-     console.log("nombre de messages dans la liste :" + this.messageList.length);
+     //console.log("nombre de messages dans la liste :" + this.messageList.length);
   }
 
 
