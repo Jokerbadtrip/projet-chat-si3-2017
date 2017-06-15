@@ -13,7 +13,7 @@ export class TwitterFrameComponent implements OnInit {
   @Input() message: MessageModel;
 
 
-  constructor(private sanatizer: DomSanitizer) {
+  constructor() {
   }
 
   ngOnInit(): void {
