@@ -17,6 +17,8 @@ import {MessageHistoryComponent} from "./messages/message-history/message-histor
 import {MessageHistoryModule} from "./messages/message-history/message-history.module";
 import {EmojiPipe} from "../shared/pipes/emoji.pipe";
 import {TwitterPipe} from "../shared/pipes/twitter.pipe";
+import {YoutubeFrameComponent} from "./chat-frames/youtube-frame/youtube-frame.component";
+import {YoutubePipe} from "../shared/pipes/youtube.pipe";
 
 
 
@@ -31,7 +33,9 @@ import {TwitterPipe} from "../shared/pipes/twitter.pipe";
     MessageHistoryComponent,
     FormComponent,
     EmojiPipe,
-    TwitterPipe
+    TwitterPipe,
+    YoutubeFrameComponent,
+    YoutubePipe
   ],
   imports: [
     BrowserModule,

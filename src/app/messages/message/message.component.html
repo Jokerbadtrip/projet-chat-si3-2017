@@ -4,8 +4,8 @@
       {{message.from}} :
     </div>
     <div class = "message_content_text right">
-      {{message.content |emoji}}
-
+      {{message.content |emoji}}<br>
+      <app-youtube-frame [currentMessage] = "message"></app-youtube-frame>
     </div>
     <br>
     <div class = "timestamp_text bottom">sent at : {{message.createdAt | date: "medium"}}</div>

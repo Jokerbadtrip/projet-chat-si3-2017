@@ -1,3 +1,19 @@
-/**
- * Created by MSI on 15/06/2017.
- */
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+
+import { YoutubeFrameComponent } from "./youtube-frame.component";
+import {MessageModel} from "../../../shared/models/MessageModel";
+
+@NgModule({
+  declarations: [
+    YoutubeFrameComponent
+  ],
+  imports: [
+    CommonModule,
+    MessageModel
+  ],
+  exports: [YoutubeFrameComponent],
+  providers: [MessageModel]
+})
+
+export class YoutubeFrameModule { }
