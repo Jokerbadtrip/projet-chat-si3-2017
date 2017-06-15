@@ -1,3 +1,16 @@
 .channel_name{
   font-weight: bold;
+  color: #333333;
+  font-size: medium;
+}
+
+.channel_updoot_creation{
+  font-size: smaller;
+  color: #bab2b2;
+}
+
+.timer{
+  float: bottom;
+  text-align: right;
+  display: block;
 }

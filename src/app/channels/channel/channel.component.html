@@ -1,7 +1,17 @@
 <div (click)="selectChannel()" class="item" *ngIf="channel.name && channel.createdAt && channel.updatedAt">
 
-  <div>
-    {{channel.name}}
+  <div class="channel_name">{{channel.name}}</div>
+
+  <div class="channel_updoot_creation timer">
+
+    last update : {{channel.updatedAt}}
+
+  </div>
+
+  <div class="channel_updoot_creation timer">
+
+    created at : {{channel.createdAt}}
+
   </div>
 
 

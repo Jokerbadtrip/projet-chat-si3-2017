@@ -1,27 +1,29 @@
 
+<div style="height: 80% !important;">
 
-	<div class="row col-md-12 container min_margin">
-
-
-      <div id="sidebar" class="col-md-3 centered_block sidebar min_margin">
-
-        <h1>{{channel}}</h1>
-
-        <app-channel-list></app-channel-list>
-        <app-channel-form></app-channel-form>
-      </div>
-
-      <div id="chat" class="col-md-9 centered_block main min_margin">
-
-        <h1> {{title}} </h1>
-
-        <app-message-list></app-message-list>
-        <app-message-form></app-message-form>
-      </div>
+  <div #main_div class="row col-md-12 container">
 
 
-
+    <div id="sidebar" class="col-md-3 centered_block sidebar">
+      <h1>{{channel}}</h1>
+      <app-channel-list></app-channel-list>
     </div>
+
+    <div #parentdiv id="chat" class="col-md-9 centered_block main">
+      <h1> {{title}} </h1>
+      <app-message-list></app-message-list>
+    </div>
+
+    <div class="col-md-12 forms">
+      <app-forms></app-forms>
+    </div>
+
+
+  </div>
+
+
+</div>
+
 
 
 

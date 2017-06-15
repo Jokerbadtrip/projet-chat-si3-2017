@@ -1,10 +1,17 @@
-<div class="channels_content">
+<div class="channels_content" *ngIf="channelList">
 
-  <div *ngFor="let currentChannel of channelList">
 
-    <app-channel [channel]="currentChannel"></app-channel>
+  <div  class="bottom_alignment">
+
+    <div *ngFor="let currentChannel of channelList">
+
+      <app-channel [channel]="currentChannel"></app-channel>
+
+    </div>
 
   </div>
+
+
 
 </div>
 

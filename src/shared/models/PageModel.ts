@@ -1,18 +1,19 @@
 
-import { MessageModel } from './MessageModel';
+import { MessageModel } from "./MessageModel";
 import { Component } from "@angular/core";
 
-export class Page {
+export class PageModel {
+  
   static nbPage;
-  static nbMax = 10;
+  static nbMax = 20;
   private PageNumber;
   private currentIndice;
   private messages: MessageModel[];
 
   constructor() {
-    if(Page.nbPage==null) Page.nbPage = 0;
-    this.currentIndice = Page.nbPage;
-    Page.nbPage++;
+    if(PageModel.nbPage==null) PageModel.nbPage = 0;
+    this.currentIndice = Number(PageModel.nbPage);
+    PageModel.nbPage++;
   }
   
   /**
@@ -20,12 +21,12 @@ export class Page {
    * a new one should be created
    */
   private canAdd() {
-    console.log("PagerItemr debug : canAdd");
-    return (Page.nbMax>this.currentIndice)?0:1;
+    console.log("PagerItem debug : canAdd");
+    return (PageModel.nbMax>this.currentIndice)?0:1;
   }
 
   addItem(messageModel: MessageModel){
-    console.log("PagerItemr debug : addItem");
+    console.log("PagerItem debug : addItem");
     if(!this.currentIndice) this.currentIndice=0;
     if(this.canAdd()>0){
       this.messages[this.currentIndice] = messageModel;

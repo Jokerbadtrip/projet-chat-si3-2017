@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 
-import { MessageService } from "../../shared/services";
-import { MessageModel } from "../../shared/models/MessageModel";
-import {ChanelModel} from "../../shared/models/ChannelModel";
-import {ChannelService} from "../../shared/services/channel/channel.service";
+import { MessageService } from "../../../shared/services";
+import { MessageModel } from "../../../shared/models/MessageModel";
+import {ChanelModel} from "../../../shared/models/ChannelModel";
+import {ChannelService} from "../../../shared/services/channel/channel.service";
 
 @Component({
   selector: "app-message-form",
@@ -33,7 +33,7 @@ export class MessageFormComponent implements OnInit {
     console.log("Click!");
     console.log("currentChannel:" + ChannelService.selectedChannel);
     const route = ChannelService.selectedChannel.id + "/messages";
-    this.messageService.sendMessage(route, this.message);
+    this.messageService.sendMessage2(route, this.message);
     this.messageService.getMessages(route);
   }
 }

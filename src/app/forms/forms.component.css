@@ -1,0 +1,12 @@
+.left {
+  float: left;
+  text-align: right;
+  display: inline;
+  background-color: #e3e3e3;
+}
+
+.right {
+  float: left;
+  text-align: left;
+  display: inline;
+}
