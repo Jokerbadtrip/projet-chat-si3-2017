@@ -64,9 +64,6 @@ export class MessageService {
    * @param message
    */
   public sendMessage(route: string, message: MessageModel) {
-    //console.log("sendMessage");
-    //console.log("route = " + route);
-    //console.log("message = " + message.content);
     const finalUrl = URLSERVER + route;
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
@@ -74,7 +71,6 @@ export class MessageService {
     if (route && message) {
       this.http.post(finalUrl, message, options).subscribe((response) => this.extractMessageAndGetMessages(response, route));
       this.http.get(finalUrl).subscribe((response) => this.extractAndUpdateMessageList(response));
-      //console.log("sendMessage(" + route + " , " + message + ")");
     }
   }
   private spotChannel(message: MessageModel) {
@@ -95,7 +91,7 @@ export class MessageService {
     }
     return channel;
   }
-  private spotMessage(i: number, message: MessageModel) {
+  private spotMessage(i: number, message: MessageModel): string {
     let mots: string[];
     mots = message.content.split(" ");
     let messageFin = "";
@@ -107,11 +103,38 @@ export class MessageService {
     return messageFin;
   }
 
+  private spotEmojis(message: MessageModel): string {
+    let words: string[];
+    words = message.content.split(" ");
+    let finalMessage = "";
+    for (let i = 0; i < words.length; i++) {
+      if (words[i] === "<3") {
+        words[i] = "❤";
+      }else if (words[i] === ":)") {
+        words[i] = "😊";
+      }else if (words[i] === ":'(") {
+        words[i] = "😭";
+      }else if (words[i] === ":(") {
+        words[i] = "☹";
+      }else if (words[i] === ":D") {
+        words[i] = "😂";
+      }else if (words[i] === ":p" || words[i] === ":P") {
+        words[i] = "😛";
+      }else if (words[i] === ":o" || words[i] === ":O") {
+        words[i] = "😮";
+      }
+
+      finalMessage = finalMessage + words[i] + " ";
+    }
+    return finalMessage;
+  }
+
   public sendMessage2(route: string, message: MessageModel) {
     let channel: number[];
     channel = this.spotChannel(message);
     if (channel) {
       message.content = this.spotMessage(channel.length, message);
+      message.content = this.spotEmojis(message);
     }
     console.log(message.content);
     this.sendMessage(route, message);
@@ -121,6 +144,9 @@ export class MessageService {
       }
     }
   }
+
+
+
 
   /**
    * Fonction extractAndUpdateMessageList.
@@ -132,7 +158,7 @@ export class MessageService {
    */
   extractAndUpdateMessageList(response: Response) {
 
-    //console.log("extractAndUpdateMessageList");
+
 
     if (!response.ok) {console.log("status = " + response.statusText); }
 
@@ -155,7 +181,6 @@ export class MessageService {
    * @returns {any|{}}
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
-    //console.log("extractMessageAndGetMessages");
 
     if (!response.ok){console.log("status = " + response.statusText); }
 
