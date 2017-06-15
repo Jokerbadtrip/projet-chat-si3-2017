@@ -36,8 +36,7 @@ import {TwitterFrameComponent} from "./chat-frames/twitter-frame/twitter-frame.c
     EmojiPipe,
     TwitterPipe,
     YoutubeFrameComponent,
-    YoutubePipe
-    TwitterPipe,
+    YoutubePipe,
     TwitterFrameComponent
   ],
   imports: [
