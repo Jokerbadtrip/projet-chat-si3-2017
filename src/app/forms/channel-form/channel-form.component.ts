@@ -23,6 +23,7 @@ export class ChannelFormComponent implements OnInit {
   createChannel() {
     console.log("Click!");
     this.channelService.createChannel(this.channel);
+    this.channelService.getChannels();
   }
 
 
