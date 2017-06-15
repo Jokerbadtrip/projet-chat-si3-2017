@@ -17,6 +17,7 @@ import {MessageHistoryComponent} from "./messages/message-history/message-histor
 import {MessageHistoryModule} from "./messages/message-history/message-history.module";
 import {EmojiPipe} from "../shared/pipes/emoji.pipe";
 import {TwitterPipe} from "../shared/pipes/twitter.pipe";
+import {TwitterFrameComponent} from "./chat-frames/twitter-frame/twitter-frame.component";
 
 
 
@@ -31,7 +32,8 @@ import {TwitterPipe} from "../shared/pipes/twitter.pipe";
     MessageHistoryComponent,
     FormComponent,
     EmojiPipe,
-    TwitterPipe
+    TwitterPipe,
+    TwitterFrameComponent
   ],
   imports: [
     BrowserModule,
