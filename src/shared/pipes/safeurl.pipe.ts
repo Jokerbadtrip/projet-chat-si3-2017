@@ -3,10 +3,10 @@
 import {Pipe, PipeTransform} from "@angular/core";
 import {DomSanitizer, SafeHtml, SafeUrl} from "@angular/platform-browser";
 @Pipe({
-  name: "twitter"
+  name: "safeUrl"
 })
 
-export class TwitterPipe implements PipeTransform {
+export class SafeUrlPipe implements PipeTransform {
 
 
   constructor(private sanitizer: DomSanitizer) {

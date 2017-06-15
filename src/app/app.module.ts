@@ -16,9 +16,8 @@ import {FormComponent} from "./forms/forms.component";
 import {MessageHistoryComponent} from "./messages/message-history/message-history.component";
 import {MessageHistoryModule} from "./messages/message-history/message-history.module";
 import {EmojiPipe} from "../shared/pipes/emoji.pipe";
-import {TwitterPipe} from "../shared/pipes/twitter.pipe";
+import {SafeUrlPipe} from "../shared/pipes/safeurl.pipe";
 import {YoutubeFrameComponent} from "./chat-frames/youtube-frame/youtube-frame.component";
-import {YoutubePipe} from "../shared/pipes/youtube.pipe";
 import {TwitterFrameComponent} from "./chat-frames/twitter-frame/twitter-frame.component";
 
 
@@ -34,9 +33,8 @@ import {TwitterFrameComponent} from "./chat-frames/twitter-frame/twitter-frame.c
     MessageHistoryComponent,
     FormComponent,
     EmojiPipe,
-    TwitterPipe,
+    SafeUrlPipe,
     YoutubeFrameComponent,
-    YoutubePipe,
     TwitterFrameComponent
   ],
   imports: [

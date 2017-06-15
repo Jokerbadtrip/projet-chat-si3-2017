@@ -1,5 +1,5 @@
 <span *ngIf="hasLink()">
 
-  <iframe [src]="getLink() | twitter"></iframe>
+  <iframe [src]="getLink() | safeUrl"></iframe>
 
 </span>
