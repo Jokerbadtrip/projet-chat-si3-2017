@@ -1,3 +1,3 @@
-/**
- * Created by MSI on 15/06/2017.
- */
+export { TwitterFrameComponent } from "./twitter-frame.component";
+export { TwitterFrameModule } from "./twitter-frame.module";
+

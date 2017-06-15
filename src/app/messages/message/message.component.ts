@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import {Component, Input, OnInit, Output} from "@angular/core";
 
 import { MessageModel } from "../../../shared/models/MessageModel";
 
@@ -10,7 +10,7 @@ import { MessageModel } from "../../../shared/models/MessageModel";
 export class MessageComponent implements OnInit {
 
   @Input() message: MessageModel;
-  @Input() threadId: number;
+
 
   constructor() {
     this.message = new MessageModel(1);

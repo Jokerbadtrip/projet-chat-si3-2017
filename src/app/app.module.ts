@@ -19,6 +19,7 @@ import {EmojiPipe} from "../shared/pipes/emoji.pipe";
 import {TwitterPipe} from "../shared/pipes/twitter.pipe";
 import {YoutubeFrameComponent} from "./chat-frames/youtube-frame/youtube-frame.component";
 import {YoutubePipe} from "../shared/pipes/youtube.pipe";
+import {TwitterFrameComponent} from "./chat-frames/twitter-frame/twitter-frame.component";
 
 
 
@@ -36,6 +37,8 @@ import {YoutubePipe} from "../shared/pipes/youtube.pipe";
     TwitterPipe,
     YoutubeFrameComponent,
     YoutubePipe
+    TwitterPipe,
+    TwitterFrameComponent
   ],
   imports: [
     BrowserModule,
