@@ -15,6 +15,8 @@ import {ChannelModule} from "./channels/channel/channel.module";
 import {FormComponent} from "./forms/forms.component";
 import {MessageHistoryComponent} from "./messages/message-history/message-history.component";
 import {MessageHistoryModule} from "./messages/message-history/message-history.module";
+import {EmojiPipe} from "../shared/pipes/emoji.pipe";
+import {TwitterPipe} from "../shared/pipes/twitter.pipe";
 
 
 
@@ -27,7 +29,9 @@ import {MessageHistoryModule} from "./messages/message-history/message-history.m
     ChannelFormComponent,
     MessageComponent,
     MessageHistoryComponent,
-    FormComponent
+    FormComponent,
+    EmojiPipe,
+    TwitterPipe
   ],
   imports: [
     BrowserModule,

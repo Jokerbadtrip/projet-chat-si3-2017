@@ -4,7 +4,8 @@
       {{message.from}} :
     </div>
     <div class = "message_content_text right">
-      {{message.content}}
+      {{message.content | emoji | twitter }}
+
     </div>
     <br>
     <div class = "timestamp_text bottom">sent at : {{message.createdAt | date: "medium"}}</div>

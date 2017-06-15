@@ -103,38 +103,12 @@ export class MessageService {
     return messageFin;
   }
 
-  private spotEmojis(message: MessageModel): string {
-    let words: string[];
-    words = message.content.split(" ");
-    let finalMessage = "";
-    for (let i = 0; i < words.length; i++) {
-      if (words[i] === "<3") {
-        words[i] = "❤";
-      }else if (words[i] === ":)") {
-        words[i] = "😊";
-      }else if (words[i] === ":'(") {
-        words[i] = "😭";
-      }else if (words[i] === ":(") {
-        words[i] = "☹";
-      }else if (words[i] === ":D") {
-        words[i] = "😂";
-      }else if (words[i] === ":p" || words[i] === ":P") {
-        words[i] = "😛";
-      }else if (words[i] === ":o" || words[i] === ":O") {
-        words[i] = "😮";
-      }
-
-      finalMessage = finalMessage + words[i] + " ";
-    }
-    return finalMessage;
-  }
 
   public sendMessage2(route: string, message: MessageModel) {
     let channel: number[];
     channel = this.spotChannel(message);
     if (channel) {
       message.content = this.spotMessage(channel.length, message);
-      message.content = this.spotEmojis(message);
     }
     console.log(message.content);
     this.sendMessage(route, message);
