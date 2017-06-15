@@ -26,7 +26,9 @@ export class YoutubeFrameComponent implements OnInit {
     const words = this.currentMessage.content.split(" ");
     for (let i = 0; i < words.length; i++) {
       if (urlYt.test(words[i]) ) {
-        words[i].replace("watch\?v=", "embed\/");
+        const watchv = "watch?v=";
+        const embed = "embed/";
+        words[i] = words[i].replace(watchv, embed);
         return words[i];
       }
     }
