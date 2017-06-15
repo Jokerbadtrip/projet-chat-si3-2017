@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {MessageModel} from "../../../shared/models/MessageModel";
+import {DomSanitizer} from "@angular/platform-browser";
 @Component({
   selector: "app-twitter-frame",
   templateUrl: "./twitter-frame.component.html",
@@ -12,14 +13,14 @@ export class TwitterFrameComponent implements OnInit {
   @Input() message: MessageModel;
 
 
-
+  constructor(private sanatizer: DomSanitizer) {
+  }
 
   ngOnInit(): void {
   }
 
   hasLink() {
     const urlType = /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)\/([a-zA-Z0-9_]+)\/([0-9]+)/;
-
     return urlType.test(this.message.content);
 
   }
@@ -29,10 +30,18 @@ export class TwitterFrameComponent implements OnInit {
     let words: string[];
     words = this.message.content.split(" ");
     const urlType = /http(?:s)?:\/\/(?:www\.)?twitter\.com\/([a-zA-Z0-9_]+)\/([a-zA-Z0-9_]+)\/([0-9]+)/;
+
+    console.log("words length:" + words.length);
+
     for (let i = 0; i < words.length; i++) {
 
       if (urlType.test(words[i])) {
-        return words[i];
+        console.log("dans la boucle de fdp" + true);
+        const string = "http://twitframe.com/show?url=" + words[i];
+        string.replace(":", "%3A");
+        string.replace("/", "%2F");
+        string.replace("https", "http");
+        return string;
       }
     }
   }
