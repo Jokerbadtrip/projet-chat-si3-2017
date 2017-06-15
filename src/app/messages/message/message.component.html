@@ -8,6 +8,7 @@
       <app-youtube-frame [currentMessage] = "message"></app-youtube-frame>
       <app-twitter-frame [message]= "message"></app-twitter-frame>
       <app-instagram-frame [message]="message"></app-instagram-frame>
+      <app-image-frame [message]="message"></app-image-frame>
     </div>
     <br>
     <div class = "timestamp_text bottom">sent at : {{message.createdAt | date: "medium"}}</div>

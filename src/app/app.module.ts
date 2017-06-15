@@ -14,12 +14,12 @@ import {ChannelListComponent} from "./channels/channel-list/channel-list.compone
 import {ChannelModule} from "./channels/channel/channel.module";
 import {FormComponent} from "./forms/forms.component";
 import {MessageHistoryComponent} from "./messages/message-history/message-history.component";
-import {MessageHistoryModule} from "./messages/message-history/message-history.module";
 import {EmojiPipe} from "../shared/pipes/emoji.pipe";
 import {SafeUrlPipe} from "../shared/pipes/safeurl.pipe";
 import {YoutubeFrameComponent} from "./chat-frames/youtube-frame/youtube-frame.component";
 import {TwitterFrameComponent} from "./chat-frames/twitter-frame/twitter-frame.component";
 import {InstagramFrameComponent} from "./chat-frames/instagram-frame/instagram-frame.component";
+import {ImageFrameComponent} from "./chat-frames/image-frame/image-frame.component";
 
 
 
@@ -37,7 +37,8 @@ import {InstagramFrameComponent} from "./chat-frames/instagram-frame/instagram-f
     SafeUrlPipe,
     YoutubeFrameComponent,
     TwitterFrameComponent,
-    InstagramFrameComponent
+    InstagramFrameComponent,
+    ImageFrameComponent
   ],
   imports: [
     BrowserModule,
