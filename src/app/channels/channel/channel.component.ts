@@ -24,7 +24,7 @@ export class ChannelComponent implements OnInit {
   ngOnInit(): void { }
 
   selectChannel(channel: ChanelModel) {
-    MessageHistoryComponent.pageNumber = 0;
+   this.messageService.resetPage();
    console.log("Click!");
    const route = channel.id + "/messages";
    this.channelService.setCurrentChannel(channel);

@@ -16,6 +16,7 @@ export class MessageListComponent implements OnInit {
 
   public messageList: MessageModel[];
   private channel: ChanelModel;
+  private pageNumber: number;
 
 
   constructor(private messageService: MessageService, private channelService: ChannelService) {
@@ -37,13 +38,14 @@ export class MessageListComponent implements OnInit {
     timer.subscribe(() => this.getMessage());
 
     this.channelService.currentChannel.subscribe((currenChannel) => this.channel = currenChannel);
+    this.messageService.pageNumber.subscribe((page) => this.pageNumber = page);
 
   }
 
   public getMessage() {
 
      if (this.channel) {
-       this.messageService.getMessages(this.channel.id + "/messages?page=" + MessageHistoryComponent.pageNumber);
+       this.messageService.getMessages(this.channel.id + "/messages?page=" + this.pageNumber);
        this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      }
 

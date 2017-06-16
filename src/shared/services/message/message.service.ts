@@ -10,10 +10,11 @@ import { URLSERVER } from "../../constants/urls";
 import {ChannelService} from "../channel/channel.service";
 import {forEach} from "@angular/router/src/utils/collection";
 import {ChanelModel} from "../../models/ChannelModel";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class MessageService {
-  private static UPDATE_VAL = 60000;
+
   /**
    * Url pour accéder aux données. L'url est commun à toutes les fonctions du service.
    * Il permet d'accéder aux channels. À partir de cet url, vous pourrez accéder aux messages.
@@ -29,11 +30,13 @@ export class MessageService {
    * dans lequel vous trouverez une première explication sur les observables ainsi qu'une vidéo tutoriel.
    */
   public messageList$: ReplaySubject<MessageModel[]>;
+  public pageNumber: BehaviorSubject<number>;
 
   constructor(private http: Http) {
     this.url = URLSERVER;
     this.messageList$ = new ReplaySubject(1);
     this.messageList$.next([new MessageModel()]);
+    this.pageNumber = new BehaviorSubject(1);
   }
 
   /**
@@ -52,6 +55,18 @@ export class MessageService {
       .subscribe((response) => this.extractAndUpdateMessageList(response));
   }
 
+
+  public resetPage() {
+    this.pageNumber.next(0);
+  }
+
+  public incrementPage() {
+    this.pageNumber.next(this.pageNumber.getValue() + 1);
+  }
+
+  public decrementPage() {
+    this.pageNumber.next(this.pageNumber.getValue() - 1);
+  }
   /**
    * Fonction sendMessage.
    * Cette fonction permet l'envoi d'un message. Elle prend en paramêtre:

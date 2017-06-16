@@ -17,11 +17,11 @@ export class MessageHistoryComponent implements OnInit {
 
 
 
-  static pageNumber: number;
+  private pageNumber: number;
   private channel: ChanelModel;
 
   constructor(private messageService: MessageService, private channelService: ChannelService){
-    MessageHistoryComponent.pageNumber = 0;
+    this.pageNumber = 0;
   }
 
 
@@ -29,20 +29,21 @@ export class MessageHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.channelService.currentChannel.subscribe((currentChannel) => this.channel = currentChannel);
+    this.messageService.pageNumber.subscribe((page) => this.pageNumber = page);
   }
 
   requestPreviousPage() {
 
-    if (MessageHistoryComponent.pageNumber !== 0) {
-      MessageHistoryComponent.pageNumber--;
-      this.messageService.getMessages(this.channel.id + "/messages?page=" + MessageHistoryComponent.pageNumber);
+    if (this.pageNumber !== 0) {
+      this.messageService.decrementPage();
+      this.messageService.getMessages(this.channel.id + "/messages?page=" + this.pageNumber);
     }
 
   }
 
   requestNextPage() {
-    MessageHistoryComponent.pageNumber++;
-    this.messageService.getMessages(this.channel.id + "/messages?page=" + MessageHistoryComponent.pageNumber);
+    this.messageService.incrementPage();
+    this.messageService.getMessages(this.channel.id + "/messages?page=" + this.pageNumber);
   }
 
 
