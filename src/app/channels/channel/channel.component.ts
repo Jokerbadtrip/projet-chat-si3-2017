@@ -25,7 +25,6 @@ export class ChannelComponent implements OnInit {
 
   selectChannel(channel: ChanelModel) {
    this.messageService.resetPage();
-   console.log("Click!");
    const route = channel.id + "/messages";
    this.channelService.setCurrentChannel(channel);
    this.messageService.getMessages(route);

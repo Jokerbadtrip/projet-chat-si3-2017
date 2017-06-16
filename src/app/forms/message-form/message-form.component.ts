@@ -32,8 +32,6 @@ export class MessageFormComponent implements OnInit {
    * ainsi que le message à envoyer. Ce dernier correspond à l'objet MessageModel que l'utilisateur rempli à travers l'input.
    */
   sendMessage() {
-    console.log("Click!");
-    console.log("currentChannel:" + this.channel);
     const route = this.channel.id + "/messages";
     this.messageService.sendMessage2(route, this.message);
     this.messageService.getMessages(route);

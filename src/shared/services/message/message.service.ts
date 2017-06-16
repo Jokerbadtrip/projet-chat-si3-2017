@@ -111,8 +111,6 @@ export class MessageService {
     mots = message.content.split(" ");
     let messageFin = "";
     for (i; i < mots.length; i++) {
-      console.log(i);
-      console.log(mots[i]);
       messageFin = messageFin + mots[i] + " ";
     }
     return messageFin;
@@ -125,7 +123,6 @@ export class MessageService {
     if (channel) {
       message.content = this.spotMessage(channel.length, message);
     }
-    console.log(message.content);
     this.sendMessage(route, message);
     if (channel) {
       for (let i = 0; i < channel.length; i++) {
@@ -149,7 +146,6 @@ export class MessageService {
 
 
 
-    if (!response.ok) {console.log("status = " + response.statusText); }
 
     // Plus d'info sur Response ou sur la fonction .json()? si tu utilises Webstorm,
     // fait CTRL + Click pour voir la déclaration et la documentation
@@ -171,7 +167,6 @@ export class MessageService {
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
 
-    if (!response.ok){console.log("status = " + response.statusText); }
 
     const id = response.json().id;
     const content = response.json().content;
@@ -180,7 +175,6 @@ export class MessageService {
     const updated_at = response.json().updatedAt;
     const threadId = response.json().threadId;
     const messageModel = new MessageModel(id, content, fromWho, created_at, updated_at);
-    console.log("extractMessageAndGetMessages " + threadId);
     return messageModel;
 
   }

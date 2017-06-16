@@ -36,10 +36,6 @@ export class ChannelService {
 
   public createChannel(channel: ChanelModel) {
 
-    console.log("createChannel:start");
-    console.log("route:" + this.url);
-    console.log("channel:" + channel.id + " name:" + channel.name);
-
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
 
@@ -47,7 +43,6 @@ export class ChannelService {
       this.http.post(this.url, channel, options).subscribe((response) => this.extractChannelAndGetChannel(response));
       this.http.get(this.url).subscribe((response) => this.exctractAndUpdateChannelList(response));
     }
-    console.log("createChannel:end");
   }
 
 
@@ -56,25 +51,18 @@ export class ChannelService {
   }
 
   private extractChannelAndGetChannel(response: Response): ChanelModel {
-    console.log("extractChannelAndGetChannel:start");
-    console.log("response:" + response.json());
-    console.log("channel response:" + response.json().name + " id:" + response.json().id);
 
     const id = response.json().id;
     const name = response.json().name;
     const createdAt = response.json().createdAt;
     const updatedAt = response.json().updatedAt;
     const channel = new ChanelModel(id, name, createdAt, updatedAt);
-    console.log("extractChannelAndGetChannel:end");
     return channel;
   }
 
   private exctractAndUpdateChannelList(response) {
-    console.log("exctractAndUpdateChannelList:start");
-    console.log("response:" + response.json());
     const channelList = response.json() || [];
     this.channelList$.next(channelList);
-    console.log("exctractAndUpdateChannelList:end");
   }
 
 

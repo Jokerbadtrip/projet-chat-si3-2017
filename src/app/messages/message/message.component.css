@@ -37,7 +37,14 @@
   display: block;
 }
 
-.ourMessage{
+.userMessage{
+  color:#333333;
+  background-color: #b38867;
+  border-radius: 10px;
+  margin: 7px;
+}
+
+.notUserMessage{
   color:#333333;
   background-color: #CDCDC0;
   border-radius: 10px;
