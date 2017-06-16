@@ -4,34 +4,37 @@
 
 <div class="messages_content" *ngIf="messageList">
 
-  <div class="checkbox">
-
-    <input type="checkbox" [(ngModel)] = "refresh" (click)="_refresh()"/>
-    Do not refresh chat.
-
-  </div>
 
 
 
-  <div class="bottom_alignment">
+<div class="checkbox">
 
-    <div *ngFor="let currentMessage of messageList.slice().reverse()">
-      <!--CurrentMessage est le message courant dans la boucle -->
-      <!--On donne notre message courant en Input (en entrée, parametre) du composant Message qui va lui l'afficher.-->
-      <div *ngIf="messageList.length > 0">
-        <app-message [message]="currentMessage"></app-message>
-      </div>
-    </div>
+  <input type="checkbox" [(ngModel)] = "refresh" (click)="_refresh()"/>
+  Do not refresh chat.
 
+</div>
 
-
-  </div>
-
-  <div clas="pager">
+  <div class="pager">
 
     <app-message-history></app-message-history>
 
   </div>
+
+
+
+
+
+<div class="bottom_alignment">
+
+  <div *ngFor="let currentMessage of messageList.slice().reverse()">
+    <!--CurrentMessage est le message courant dans la boucle -->
+    <!--On donne notre message courant en Input (en entrée, parametre) du composant Message qui va lui l'afficher.-->
+    <div *ngIf="messageList.length > 0">
+      <app-message [message]="currentMessage"></app-message>
+    </div>
+  </div>
+
+
 
 
 
