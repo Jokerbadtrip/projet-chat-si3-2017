@@ -6,16 +6,9 @@
   margin-right: 10%;
   overflow-y: scroll;
   overflow-x: hidden;
-  width: stretch;
-  height:80%;
+  width: auto;
+  height: 85vh;
   margin: 2%;
 }
 
-.bottom_alignment{
 
-  position: relative;
-  bottom: 2%;
-  left: 5%;
-  right: 5%;
-
-}
