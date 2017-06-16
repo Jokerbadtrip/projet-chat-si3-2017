@@ -1,17 +1,37 @@
 <div class="col-ld-12">
   <div class="block" *ngIf="message.from && message.content && message.createdAt ">
-    <div class = "sender_text left">
-      {{message.from}} :
+    <div *ngIf="ourMessage(); else elseBlock">
+      <div class="borders">
+      <div class="ourMessage">
+        <div class="left">
+          {{message.from}} :
+        </div>
+        <div class = "message_content_text right">
+          {{message.content |emoji}}<br>
+          <app-youtube-frame [currentMessage] = "message"></app-youtube-frame>
+          <app-twitter-frame [message]= "message"></app-twitter-frame>
+          <app-instagram-frame [message]="message"></app-instagram-frame>
+          <app-image-frame [message]="message"></app-image-frame>
+        </div>
+        <br>
+        <div class = "timestamp_text bottom">sent at : {{message.createdAt | date: "medium"}}</div>
+      </div>
+      </div>
     </div>
-    <div class = "message_content_text right">
-      {{message.content |emoji}}<br>
-      <app-youtube-frame [currentMessage] = "message"></app-youtube-frame>
-      <app-twitter-frame [message]= "message"></app-twitter-frame>
-      <app-instagram-frame [message]="message"></app-instagram-frame>
-      <app-image-frame [message]="message"></app-image-frame>
-    </div>
-    <br>
-    <div class = "timestamp_text bottom">sent at : {{message.createdAt | date: "medium"}}</div>
+    <template #elseBlock>
+      <div class = "sender_text left">
+        {{message.from}} :
+      </div>
+      <div class = "message_content_text right">
+        {{message.content |emoji}}<br>
+        <app-youtube-frame [currentMessage] = "message"></app-youtube-frame>
+        <app-twitter-frame [message]= "message"></app-twitter-frame>
+        <app-instagram-frame [message]="message"></app-instagram-frame>
+        <app-image-frame [message]="message"></app-image-frame>
+      </div>
+      <br>
+      <div class = "timestamp_text bottom">sent at : {{message.createdAt | date: "medium"}}</div>
+    </template>
   </div>
 
 

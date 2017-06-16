@@ -24,5 +24,8 @@ export class MessageComponent implements OnInit {
    * le faire dans le ngOnInit.
    */
   ngOnInit() { }
+  ourMessage(): boolean {
+    return this.message.from === "moi";
+  }
 
 }
