@@ -6,7 +6,7 @@ h1 {
 	background-color:#f1f1f2;
   position: relative;
   min-width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 .centered_block {
 	display : block;
@@ -19,7 +19,7 @@ h1 {
 }
 
 .forms{
-  height: 20%;
+  height: 20vh;
 }
 
 .well{
@@ -27,11 +27,11 @@ h1 {
 }
 .sidebar{
 	background-color: #bcbabe;
-  height: 80%;
+  height: 80vh;
 }
 .main{
 	background-color: #f1f1f2;
-  height: 80%;
+  height: 80vh;
 }
 .scrollable{
 	overflow: scroll;

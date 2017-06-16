@@ -16,10 +16,12 @@ export class MessageListComponent implements OnInit {
   public messageList: MessageModel[];
   private channel: ChanelModel;
   private pageNumber: number;
+  private refresh: boolean;
+  private timer = Observable.timer(2000, 5000);
+  private subscription: any;
 
 
   constructor(private messageService: MessageService, private channelService: ChannelService) {
-    console.log("MessageListComponent constructor");
   }
 
   /**
@@ -32,10 +34,7 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-
-    const timer = Observable.timer(2000, 5000);
-    timer.subscribe(() => this.getMessage());
-
+    this.subscription = this.timer.subscribe(() => this.getMessage());
     this.channelService.currentChannel.subscribe((currenChannel) => this.channel = currenChannel);
     this.messageService.pageNumber.subscribe((page) => this.pageNumber = page);
 
@@ -48,6 +47,15 @@ export class MessageListComponent implements OnInit {
        this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      }
 
+  }
+
+
+  _refresh(){
+    if (this.refresh){
+      this.timer.subscribe(() => this.getMessage());
+    }else {
+      this.subscription.unsubscribe();
+    }
   }
 
 

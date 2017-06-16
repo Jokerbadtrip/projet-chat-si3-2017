@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {MessageModel} from "../../../shared/models/MessageModel";
+import {MessageService} from "../../../shared/services/message/message.service";
 @Component({
   selector: "app-youtube-frame",
   templateUrl: "./youtube-frame.component.html",
@@ -9,9 +10,11 @@ import {MessageModel} from "../../../shared/models/MessageModel";
 export class YoutubeFrameComponent implements OnInit {
 
   @Input() currentMessage: MessageModel;
+  private watchingVid: boolean;
 
 
-
+  constructor(private messageService: MessageService) {
+  }
 
   ngOnInit(): void {
 
@@ -33,5 +36,6 @@ export class YoutubeFrameComponent implements OnInit {
       }
     }
   }
+
 
 }

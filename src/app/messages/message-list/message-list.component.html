@@ -4,6 +4,15 @@
 
 <div class="messages_content" *ngIf="messageList">
 
+  <div class="checkbox">
+
+    <input type="checkbox" [(ngModel)] = "refresh" (click)="_refresh()"/>
+    Do not refresh chat.
+
+  </div>
+
+
+
   <div class="bottom_alignment">
 
     <div *ngFor="let currentMessage of messageList.slice().reverse()">
