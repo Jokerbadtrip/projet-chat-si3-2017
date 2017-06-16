@@ -1,5 +1,5 @@
 .sender_text{
-  color: #333333;
+  color: #b38867;
 }
 
 .message_content_text{
@@ -7,7 +7,7 @@
 
 .timestamp_text{
   font-size: smaller;
-  color: #bab2b2;
+  color: #b0aeb2;
   font-weight: normal;
 }
 
@@ -20,6 +20,7 @@
   text-align: right;
   margin: 2px 10px;
   display: inline;
+  font-weight: bold;
 }
 
 
@@ -37,13 +38,8 @@
 }
 
 .ourMessage{
-  font-weight: bold ;
   color:#333333;
-  background-color: #7373d6;
+  background-color: #CDCDC0;
   border-radius: 10px;
   margin: 7px;
-}
-
-.borders{
-  background-color: white;
 }
