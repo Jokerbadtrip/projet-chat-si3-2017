@@ -4,7 +4,7 @@
   margin-left: 10%;
   margin-right: 10%;
   margin-top: 5% ;
-  height: 85vh;
+  height: 60vh;
   width: auto;
 }
 
@@ -18,7 +18,7 @@
   right: 5%;
   overflow-y: scroll;
   overflow-x: hidden;
-  height: 75vh;
+  height: 60vh;
 
 }
 
@@ -28,5 +28,9 @@
   left:5%;
   right:5%;
   margin: 0 auto;
+}
+
+.checkbox{
+  margin: 20px;
 }
 
