@@ -12,16 +12,18 @@ import {ChannelService} from "../../../shared/services/channel/channel.service";
 })
 export class MessageFormComponent implements OnInit {
   public message: MessageModel;
+  private channel: ChanelModel;
 
 
 
-  constructor(private messageService: MessageService) {
-    if (!ChannelService.selectedChannel) {
-      ChannelService.selectedChannel = new ChanelModel(1);
-    }
+  constructor(private messageService: MessageService, private channelService: ChannelService) {
     this.message = new MessageModel(1, "Hello", "moi");
   }
-  ngOnInit() {  }
+  ngOnInit() {
+
+    this.channelService.currentChannel.subscribe((currentChannel) => this.channel = currentChannel);
+
+  }
 
   /**
    * Fonction pour envoyer un message.
@@ -31,8 +33,8 @@ export class MessageFormComponent implements OnInit {
    */
   sendMessage() {
     console.log("Click!");
-    console.log("currentChannel:" + ChannelService.selectedChannel);
-    const route = ChannelService.selectedChannel.id + "/messages";
+    console.log("currentChannel:" + this.channel);
+    const route = this.channel.id + "/messages";
     this.messageService.sendMessage2(route, this.message);
     this.messageService.getMessages(route);
   }

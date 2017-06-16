@@ -5,6 +5,7 @@ import { MessageModel } from "../../../shared/models/MessageModel";
 import {Observable} from "rxjs/Rx";
 import {ChannelService} from "../../../shared/services/channel/channel.service";
 import {MessageHistoryComponent} from "../message-history/message-history.component";
+import {ChanelModel} from "../../../shared/models/ChannelModel";
 
 @Component({
   selector: "app-message-list",
@@ -14,9 +15,10 @@ import {MessageHistoryComponent} from "../message-history/message-history.compon
 export class MessageListComponent implements OnInit {
 
   public messageList: MessageModel[];
+  private channel: ChanelModel;
 
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private channelService: ChannelService) {
     console.log("MessageListComponent constructor");
   }
 
@@ -32,17 +34,19 @@ export class MessageListComponent implements OnInit {
   ngOnInit() {
 
     const timer = Observable.timer(2000, 5000);
-    timer.subscribe((t) => this.getMessage(t));
+    timer.subscribe(() => this.getMessage());
+
+    this.channelService.currentChannel.subscribe((currenChannel) => this.channel = currenChannel);
 
   }
 
-  public getMessage(timer) {
-     //console.log("messagelist :" + "getMessage");
-     if (ChannelService.selectedChannel) {
-       this.messageService.getMessages(ChannelService.selectedChannel.id + "/messages?page=" + MessageHistoryComponent.pageNumber);
+  public getMessage() {
+
+     if (this.channel) {
+       this.messageService.getMessages(this.channel.id + "/messages?page=" + MessageHistoryComponent.pageNumber);
        this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
      }
-     //console.log("nombre de messages dans la liste :" + this.messageList.length);
+
   }
 
 

@@ -11,7 +11,7 @@ import {ChanelModel} from "../../models/ChannelModel";
 @Injectable()
 export class ChannelService {
 
-  static selectedChannel: ChanelModel;
+
 
   /**
    * Url pour accéder aux données. L'url est commun à toutes les fonctions du service.
@@ -20,32 +20,39 @@ export class ChannelService {
    */
   private url: string;
   public channelList$: ReplaySubject<ChanelModel[]>;
+  public currentChannel: ReplaySubject<ChanelModel>;
 
   constructor(private http: Http) {
     this.url = URLSERVER;
     this.channelList$ = new ReplaySubject(1);
     this.channelList$.next([new ChanelModel(1)]);
+    this.currentChannel = new ReplaySubject(1);
+  }
+
+
+  public setCurrentChannel(channel: ChanelModel){
+    this.currentChannel.next(channel);
   }
 
   public createChannel(channel: ChanelModel) {
 
     console.log("createChannel:start");
-    console.log("route:" + URLSERVER);
+    console.log("route:" + this.url);
     console.log("channel:" + channel.id + " name:" + channel.name);
 
     const header = new Headers({"Content-Type": "application/json"});
     const options = new RequestOptions({headers: header});
 
     if (channel) {
-      this.http.post(URLSERVER, channel, options).subscribe((response) => this.extractChannelAndGetChannel(response));
-      this.http.get(URLSERVER).subscribe((response) => this.exctractAndUpdateChannelList(response));
+      this.http.post(this.url, channel, options).subscribe((response) => this.extractChannelAndGetChannel(response));
+      this.http.get(this.url).subscribe((response) => this.exctractAndUpdateChannelList(response));
     }
     console.log("createChannel:end");
   }
 
 
   public getChannels() {
-    this.http.get(URLSERVER).subscribe((response) => this.exctractAndUpdateChannelList(response));
+    this.http.get(this.url).subscribe((response) => this.exctractAndUpdateChannelList(response));
   }
 
   private extractChannelAndGetChannel(response: Response): ChanelModel {

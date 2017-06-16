@@ -18,17 +18,16 @@ export class ChannelComponent implements OnInit {
  @Input() channel: ChanelModel;
 
  constructor(private channelService: ChannelService, private messageService: MessageService) {
-  this.channel = new ChanelModel(0, "channel_name");
  }
 
 
   ngOnInit(): void { }
 
-  selectChannel() {
+  selectChannel(channel: ChanelModel) {
     MessageHistoryComponent.pageNumber = 0;
    console.log("Click!");
-   const route = this.channel.id + "/messages";
-   ChannelService.selectedChannel = this.channel;
+   const route = channel.id + "/messages";
+   this.channelService.setCurrentChannel(channel);
    this.messageService.getMessages(route);
   }
 
