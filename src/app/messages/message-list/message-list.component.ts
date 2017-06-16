@@ -4,7 +4,6 @@ import { MessageService } from "../../../shared/services/index";
 import { MessageModel } from "../../../shared/models/MessageModel";
 import {Observable} from "rxjs/Rx";
 import {ChannelService} from "../../../shared/services/channel/channel.service";
-import {MessageHistoryComponent} from "../message-history/message-history.component";
 import {ChanelModel} from "../../../shared/models/ChannelModel";
 
 @Component({
