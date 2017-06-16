@@ -1,15 +1,14 @@
 .sender_text{
-  font-weight: bold;
   color: #333333;
 }
 
 .message_content_text{
-  font-weight: normal;
 }
 
 .timestamp_text{
   font-size: smaller;
   color: #bab2b2;
+  font-weight: normal;
 }
 
 .block{
@@ -35,4 +34,16 @@
   float: bottom;
   text-align: right;
   display: block;
+}
+
+.ourMessage{
+  font-weight: bold ;
+  color:#333333;
+  background-color: #7373d6;
+  border-radius: 10px;
+  margin: 7px;
+}
+
+.borders{
+  background-color: white;
 }
